@@ -21,12 +21,13 @@ export const BaseBlockFlex = styled.div`
 const Base = styled.div`
   margin: 0;
   background: #fff;
-  padding: 1.125rem;
+  padding: 1.5rem;
   box-sizing: border-box;
   border-radius: 0.75rem;
   text-align: left;
   flex-grow: 1;
   box-shadow: 5px 5px 8px 5px #e1e1e1;
+  width: 100%;
 
   & + & {
     margin-top: 1rem;

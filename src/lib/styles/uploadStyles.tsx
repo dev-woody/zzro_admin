@@ -27,20 +27,20 @@ export const Label = styled.label<FormProps>`
   ${(props: { status?: string }) =>
     props.status === "primary" &&
     css`
-      background-color: #faad14 !important;
+      background-color: ${(props) => props.theme.colors.primary} !important;
       color: #fff !important;
       border: 0px !important;
       font-weight: 600;
 
       &:hover {
         border: 0px !important;
-        background-color: rgb(250 173 20 / 80%) !important;
+        background-color: ${(props) => props.theme.opacity.p_80} !important;
       }
     `}
 
   &:hover {
-    /* border: 1px solid #faad14; */
-    /* box-shadow: 0 0 0 2px rgb(250 173 20 / 10%); */
+    /* border: 1px solid ${(props) => props.theme.colors.primary}; */
+    /* box-shadow: ${(props) => "0 0 0 2px " + props.theme.opacity.p_10}; */
     color: inherit;
     cursor: inherit;
   }
@@ -108,16 +108,16 @@ const FormItem = styled.div<FormProps>`
     `}
 
   &:focus-within {
-    border-color: #faad14;
-    box-shadow: 0 0 0 2px rgb(250 173 20 / 10%);
+    border-color: ${(props) => props.theme.colors.primary};
+    box-shadow: ${(props) => "0 0 0 2px " + props.theme.opacity.p_10};
     border-inline-end-width: 1px;
     outline: 0;
   }
 
   &:hover {
-    border: 1px solid #faad14;
-    box-shadow: 0 0 0 2px rgb(250 173 20 / 10%);
-    color: #faad14;
+    border: 1px solid ${(props) => props.theme.colors.primary};
+    box-shadow: ${(props) => "0 0 0 2px " + props.theme.opacity.p_10};
+    color: ${(props) => props.theme.colors.primary};
     cursor: pointer;
   }
 
@@ -152,7 +152,7 @@ const DeleteBlock = styled.div`
   background-color: rgba(255, 255, 255, 0.2);
 
   &:hover {
-    color: #faad14;
+    color: ${(props) => props.theme.colors.primary};
     cursor: pointer;
   }
 
@@ -160,7 +160,7 @@ const DeleteBlock = styled.div`
     box-sizing: border-box;
     transition: 0.1s;
     &:hover {
-      color: #faad14;
+      color: ${(props) => props.theme.colors.primary};
       cursor: pointer;
     }
   }

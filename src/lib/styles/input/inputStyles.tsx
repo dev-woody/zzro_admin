@@ -2,17 +2,16 @@ import { useState } from "react";
 import styled, { css } from "styled-components";
 import { propsTypes } from "types/globalTypes";
 import { AlignBox, ErrorMsg } from "../globalStyles";
-import { Label } from "../uploadStyles";
 import { ErrorMessage } from "@hookform/error-message";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
-type FormProps = {
+interface FormProps {
   width?: string;
   disable?: boolean;
   status?: any;
   type?: string;
-};
+}
 
 export const StyledForm = styled.form`
   display: flex;
@@ -41,7 +40,7 @@ const FormItem = styled.div<FormProps>`
   /* overflow: hidden; */
 
   * {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
   }
 
   ${(props) =>
@@ -79,9 +78,16 @@ const FormItem = styled.div<FormProps>`
       outline: 0;
     `}
 
+    &:hover {
+    border-color: ${(props) => props.theme.colors.primary};
+    box-shadow: ${(props) => "0 0 0 2px " + props.theme.opacity.p_10};
+    border-inline-end-width: 1px;
+    outline: 0;
+  }
+
   &:focus-within {
     border-color: ${(props) => props.theme.colors.primary};
-    box-shadow: 0 0 0 2px rgb(250 173 20 / 10%);
+    box-shadow: ${(props) => "0 0 0 2px " + props.theme.opacity.p_10};
     border-inline-end-width: 1px;
     outline: 0;
   }
@@ -123,6 +129,40 @@ const StyledTextAreaBlock = styled.textarea`
   &:focus-visible {
     border: none;
     outline: none;
+  }
+`;
+
+const Label = styled.label<FormProps>`
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #d9d9d9;
+  color: #000;
+  background-color: #fff;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  overflow: hidden !important;
+
+  ${(props: { status?: string }) =>
+    props.status === "primary" &&
+    css`
+      background-color: ${(props) => props.theme.colors.primary} !important;
+      color: #fff !important;
+      border: 0px !important;
+      font-weight: 600;
+
+      &:hover {
+        border: 0px !important;
+        background-color: ${(props) => props.theme.opacity.p_80} !important;
+      }
+    `}
+
+  &:hover {
+    /* border: 1px solid ${(props) => props.theme.colors.primary}; */
+    /* box-shadow: ${(props) => "0 0 0 2px " + props.theme.opacity.p_10}; */
+    color: inherit;
+    cursor: inherit;
   }
 `;
 
@@ -239,6 +279,7 @@ export const StyledSearchInput = (props: propsTypes) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          width: "fit-content",
         }}
       >
         <FormItem width={width} status={status}>

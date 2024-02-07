@@ -62,7 +62,7 @@ const SelectedBlock = styled.div<styledSelectTyps>`
 
   &:hover {
     border: 1px solid #faad14;
-    box-shadow: 0 0 0 2px rgb(250 173 20 / 10%);
+    box-shadow: ${(props) => "0 0 0 2px " + props.theme.opacity.p_10};
     cursor: pointer;
   }
 

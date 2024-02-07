@@ -7,7 +7,7 @@ type propsType = {
 export const AlignBox = styled.div<propsType>`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /* width: 100%; */
   ${(props: propsType) =>
     props.align === "vertical" &&
     css`

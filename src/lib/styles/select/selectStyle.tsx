@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 
 import { propsTypes } from "types/globalTypes";
-import { ErrorMsg } from "./globalStyles";
+import { ErrorMsg } from "../globalStyles";
 import { BiChevronDown } from "react-icons/bi";
 import { ErrorMessage } from "@hookform/error-message";
 import { priceToString } from "lib/function/changeInput";
@@ -10,7 +10,6 @@ import { priceToString } from "lib/function/changeInput";
 type styledSelectTyps = {
   isOpen?: boolean;
   status?: any;
-  isheight?: any;
   fullWidth?: boolean;
   disable?: any;
 };
@@ -26,10 +25,13 @@ const SelectBlock = styled.div<formProps>`
   position: relative;
   /* z-index: 100; */
   min-width: 200px;
+  white-space: nowrap;
   user-select: none;
 
+  margin-right: 1rem;
+
   & * {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
   }
 
   ${(props: formProps) =>
@@ -43,18 +45,15 @@ const SelectBlock = styled.div<formProps>`
     css`
       flex-direction: row;
     `}
-
-    & + & {
-    margin-left: 0.5rem;
-  }
 `;
 
 const SelectedBlock = styled.div<styledSelectTyps>`
   box-sizing: border-box;
   color: #737373;
   background-color: #fff;
-  width: 100%;
+  width: 200px;
   min-width: 200px;
+  white-space: nowrap;
   border: 1px solid #d9d9d9;
   border-radius: 0.75rem;
   padding: 0.375rem 0.75rem;
@@ -64,15 +63,15 @@ const SelectedBlock = styled.div<styledSelectTyps>`
   margin: 0.25rem 0;
 
   &:hover {
-    border: 1px solid #faad14;
-    box-shadow: 0 0 0 2px rgb(250 173 20 / 10%);
+    border: 1px solid ${(props) => props.theme.colors.primary};
+    box-shadow: ${(props) => "0 0 0 2px " + props.theme.opacity.p_10};
     cursor: pointer;
   }
 
   ${(props: styledSelectTyps) =>
     props.isOpen &&
     css`
-      border: 1px solid #faad14;
+      border: 1px solid ${(props) => props.theme.colors.primary};
       color: #d9d9d9;
     `}
 
@@ -117,14 +116,20 @@ const OptionMenuList = styled.div<styledSelectTyps>`
   opacity: 0;
   transition: 0.2s;
   min-width: 200px;
+  white-space: nowrap;
   overflow: hidden;
   margin: 0;
+  box-shadow: 2px 2px 8px 2px #e1e1e1;
+  background-color: #fff;
+  border: 0;
+  border-radius: 0.75rem;
 
   ${(props: styledSelectTyps) =>
     props.isOpen &&
     css`
-      height: ${props.isheight};
+      height: fit-content;
       opacity: 100;
+      /* border: 1px solid #d9d9d9; */
     `};
 
   ${(props: styledSelectTyps) =>
@@ -136,25 +141,22 @@ const OptionMenuList = styled.div<styledSelectTyps>`
 
 const OptionItemList = styled.div`
   box-sizing: border-box;
-  background-color: #fff;
+  height: fit-content;
+  /* background-color: #fff; */
   border: 1px solid #d9d9d9;
   border-radius: 0.75rem;
-  width: 100%;
-`;
 
-const OptionMenu = styled.div`
-  box-sizing: border-box;
-  & + & {
-    border-top: 1px dashed #d9d9d9;
-  }
+  width: 100%;
 `;
 
 const OptionLabel = styled.div`
   padding: 0 0.5rem;
-  border-radius: 0.75rem;
+  height: fit-content;
+  /* border-radius: 0.75rem; */
+
   &:hover {
     & > div.hoverColor {
-      background-color: rgb(250 173 20 / 60%) !important;
+      background-color: ${(props) => props.theme.opacity.p_10} !important;
       cursor: pointer;
     }
 
@@ -167,13 +169,13 @@ const OptionLabel = styled.div`
 const OptionsLabelText = styled.div`
   box-sizing: border-box;
   border-radius: 0.75rem;
-  margin: 0.2rem 0;
   padding: 0.5rem 0.5rem;
+  margin: 0.2rem 0;
   text-align: start;
 `;
 
 const MultipleItem = styled.div`
-  background-color: #faad14;
+  background-color: ${(props) => props.theme.colors.primary};
   color: #fff;
   padding: 0 0.5rem;
   border-radius: 0.25rem;
@@ -205,11 +207,11 @@ export const StyledSelect = (props: propsTypes) => {
   //todo 중복선택 방지
   const [isOpen, setIsOpen] = useState(false);
   const [isTitle, setIsTitle] = useState<string>("");
-  const [isheight, setIsHeight] = useState<any>(0);
   const [isMultiple, setIsMultiple] = useState<{ [key: string]: string }[]>([]);
   const newList = isMultiple.map((item) => item.id);
   const ref: any = useRef();
   const selectMenu: any = useRef();
+
   const OptionItems = ({ keyName, id }: { keyName: string; id: string }) => {
     const onClick = () => {
       setIsOpen(false);
@@ -234,11 +236,9 @@ export const StyledSelect = (props: propsTypes) => {
       }
     };
     return (
-      <OptionMenu onClick={onClick}>
-        <OptionLabel>
-          <OptionsLabelText className="hoverColor">{keyName}</OptionsLabelText>
-        </OptionLabel>
-      </OptionMenu>
+      <OptionLabel onClick={onClick}>
+        <OptionsLabelText className="hoverColor">{keyName}</OptionsLabelText>
+      </OptionLabel>
     );
   };
 
@@ -268,11 +268,6 @@ export const StyledSelect = (props: propsTypes) => {
       setIsTitle(placeholder);
     }
   }, [placeholder, getValues]);
-
-  useEffect(() => {
-    const optionHeight = ref.current.getBoundingClientRect().height;
-    setIsHeight(optionHeight + "px");
-  }, [optionList]);
 
   return (
     <SelectBlock
@@ -330,11 +325,7 @@ export const StyledSelect = (props: propsTypes) => {
           />
         </SelectedBlock>
         <OptionBlock>
-          <OptionMenuList
-            isOpen={isOpen}
-            isheight={isheight}
-            fullWidth={fullWidth}
-          >
+          <OptionMenuList isOpen={isOpen} fullWidth={fullWidth}>
             <OptionItemList ref={ref}>
               {optionList && optionList.length > 0 ? (
                 optionList.length === newList.length ? (

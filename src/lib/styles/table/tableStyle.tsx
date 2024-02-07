@@ -2,9 +2,9 @@ import styled, { css } from "styled-components";
 import { propsTypes } from "types/globalTypes";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { AlignBox } from "./globalStyles";
+import { AlignBox } from "../globalStyles";
 
-import { StyledSearchInput } from "./input/inputStyles";
+import { StyledSearchInput } from "../input/inputStyles";
 import {
   FaAngleDoubleLeft,
   FaAngleDoubleRight,
@@ -12,25 +12,33 @@ import {
   FaRegCaretSquareUp,
   FaRegSquare,
 } from "react-icons/fa";
-import { CheckBox } from "./checkBoxStyled";
+import { CheckBox } from "../checkBoxStyled";
 
-type trProps = {
+interface trProps {
   isHover?: boolean;
   isSelected?: boolean;
   doNoting?: boolean;
-};
+}
 
-type pagenationProps = {
+interface pagenationProps {
   disabled?: boolean;
   isFocus?: boolean;
-};
+}
 
 const FilterBlock = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 0 0.825rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+`;
+
+const FilterOptionBlock = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  & > div:first-child {
+    margin-left: 0;
+  }
 `;
 
 const FilterBtn = styled.span`
@@ -40,13 +48,16 @@ const FilterBtn = styled.span`
 
   &:hover {
     cursor: pointer;
-    color: #faad14;
+    color: ${(props) => props.theme.colors.primary};
   }
 `;
 
 const StyledTableBlock = styled.div`
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--cus-color-border);
   box-sizing: border-box;
+  //todo 좌우 스크롤이 꼭 필요한가?
+  overflow-x: scroll;
+
   * {
     font-size: 0.75rem;
   }
@@ -65,25 +76,27 @@ const StyledTable = styled.table`
   user-select: none;
 
   th {
-    font-weight: bold;
+    font-weight: 800;
+    background-color: var(--cus-color-fill-secondary);
+    border-bottom: 2px solid var(--cus-color-border);
   }
 
   th,
   td {
-    padding: 0.875rem;
-    font-size: 0.75rem;
+    white-space: nowrap;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
     box-sizing: border-box;
   }
 
   td + td,
   th + th {
-    border-left: 1px solid rgba(0, 0, 0, 0.06);
+    border-left: 1px solid var(--cus-color-border);
     box-sizing: border-box;
   }
 
-  th {
-    background-color: #fafafa;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  tr:hover {
+    background: var(--cus-color-fill-quaternary);
   }
 
   /* tr:nth-child(2n + 0) {
@@ -95,7 +108,7 @@ const StyledTable = styled.table`
   }
 
   tbody.smallBy3 {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid var(--cus-color-border);
   }
 `;
 
@@ -103,7 +116,7 @@ const RowTable = styled.tr<trProps>`
   box-sizing: border-box;
 
   & + & {
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-top: 1px solid var(--cus-color-border);
   }
 
   ${(props: trProps) =>
@@ -133,10 +146,8 @@ const RowTable = styled.tr<trProps>`
 const PageNationBlock = styled.div`
   display: flex;
   margin-top: 1rem;
-  justify-content: end;
+  justify-content: center;
 `;
-
-const PageNationSection = styled.div``;
 
 const PageNationButton = styled.button<pagenationProps>`
   border: 0;
@@ -170,9 +181,9 @@ const PageNationButton = styled.button<pagenationProps>`
   ${(props: pagenationProps) =>
     props.isFocus &&
     css`
-      border: 1px solid #faad14;
-      box-shadow: 0 0 0 2px rgb(250 173 20 / 10%);
-      color: #faad14;
+      border: 1px solid ${(props) => props.theme.colors.primary};
+      box-shadow: ${(props) => "0 0 0 2px " + props.theme.opacity.p_10};
+      color: ${(props) => props.theme.colors.primary};
     `}
 `;
 
@@ -288,10 +299,10 @@ export const Table = (props: propsTypes) => {
   }, [content]);
 
   return (
-    <AlignBox align={align} style={{ width: "100%" }}>
+    <>
       {filter && (
         <FilterBlock>
-          <div style={{ display: "flex" }}>{filterInput}</div>
+          <FilterOptionBlock>{filterInput}</FilterOptionBlock>
           {isSearch && <StyledSearchInput />}
         </FilterBlock>
       )}
@@ -398,6 +409,6 @@ export const Table = (props: propsTypes) => {
         </StyledTable>
       </StyledTableBlock>
       {pagenation && <Pagenation data={content} />}
-    </AlignBox>
+    </>
   );
 };

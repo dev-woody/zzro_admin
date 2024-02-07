@@ -78,7 +78,7 @@ function SignInForm({ signInResult, onSubmit }: any) {
         <StyledForm onSubmit={handleSubmit((data) => onSubmit(data))}>
           <StyledInput
             placeholder="아이디"
-            fullWidth
+            width="full"
             startItem={<BiUser />}
             label="userId"
             register={register}
@@ -88,7 +88,7 @@ function SignInForm({ signInResult, onSubmit }: any) {
           <StyledInput
             placeholder="비밀번호"
             type={isPassShow ? "text" : "password"}
-            fullWidth
+            width="full"
             startItem={<BiLock />}
             endItem={
               <PassShowBlock

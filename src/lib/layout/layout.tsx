@@ -3,7 +3,6 @@ import Header from "./header";
 import Sidebar from "./sidebar";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { BaseBlock } from "lib/styles";
 
 const LayoutBlock = styled.div`
   height: 100vh;
@@ -40,9 +39,7 @@ const Layout = () => {
       <Content>
         <Sidebar visible={visible} activeUrl={url} />
         <Section>
-          <BaseBlock>
-            <Outlet />
-          </BaseBlock>
+          <Outlet />
         </Section>
       </Content>
     </LayoutBlock>

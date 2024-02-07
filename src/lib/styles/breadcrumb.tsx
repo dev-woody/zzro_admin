@@ -8,7 +8,7 @@ interface Props {
   }[];
 }
 
-const BreadCrumbBlock = styled.div`
+const BreadCrumbBlock = styled.ol`
   display: flex;
 
   & div:nth-last-child(1) {
@@ -17,16 +17,12 @@ const BreadCrumbBlock = styled.div`
   }
 `;
 
-const BreadCrumbItem = styled.div`
+const BreadCrumbItem = styled.li`
   font-size: 0.875rem;
-
-  & + & {
-    margin-left: 0.5rem;
-  }
 
   &:hover {
     cursor: pointer;
-    color: #faad14 !important;
+    color: ${(props) => props.theme.colors.primary} !important;
   }
 `;
 
@@ -34,11 +30,16 @@ export const BreadCrumb = ({ indicator }: Props) => {
   const navigate = useNavigate();
   return (
     <BreadCrumbBlock>
-      {indicator.map((list, index) => (
-        <BreadCrumbItem key={index} onClick={() => navigate(`${list.url}`)}>
-          {list.name}
-        </BreadCrumbItem>
-      ))}
+      {indicator.map((list, index) => {
+        return (
+          <>
+            {index > 0 ? <div style={{ margin: "0 0.5rem" }}>/</div> : ""}
+            <BreadCrumbItem key={index} onClick={() => navigate(`${list.url}`)}>
+              {list.name}
+            </BreadCrumbItem>
+          </>
+        );
+      })}
     </BreadCrumbBlock>
   );
 };

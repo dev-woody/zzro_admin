@@ -13,15 +13,17 @@ export const Button = styled.button<styledProps>`
   & + & {
     margin-left: 0.5rem;
   }
-
-  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 0.875rem;
   border-radius: 0.75rem;
   border: 1px solid #d9d9d9;
   color: #000;
   background-color: #fff;
   box-sizing: border-box;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 
   ${(props: styledProps) =>
     props.fullWidth &&

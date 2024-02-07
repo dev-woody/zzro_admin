@@ -49,19 +49,19 @@ export const sidebarList: sideListType[] = [
   {
     icon: <FaHelmetSafety />,
     name: "시공업체관리",
-    url: "/goods",
+    url: "/client",
     children: [
       {
         menuName: "시공업체현황",
-        url: "/spec",
+        url: "/client_list",
       },
       {
         menuName: "공사현황",
-        url: "/groups",
+        url: "/client_work_list",
       },
       {
         menuName: "시공업체 코드관리",
-        url: "/groups",
+        url: "/ind_cfg",
       },
     ],
   },
