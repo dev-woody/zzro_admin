@@ -270,6 +270,7 @@ export const StyledSearchInput = (props: propsTypes) => {
     disable,
     action,
     align,
+    btnText,
     ...rest
   } = props;
   return (
@@ -299,7 +300,7 @@ export const StyledSearchInput = (props: propsTypes) => {
           onClick={action}
           style={{ marginLeft: "0.25rem", minWidth: "60px" }}
         >
-          검색
+          {btnText ? btnText : "검색"}
         </Label>
       </div>
       {errors && (

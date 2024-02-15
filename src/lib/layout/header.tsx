@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import { FaBars } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 interface headerProps {
   visible: boolean;
@@ -46,7 +47,9 @@ const Header = ({ visible, setVisible }: headerProps) => {
   return (
     <HeaderBlock>
       <LeftArea>
-        <div>자재로 발주 솔루션</div>
+        <Link to="/" style={{ color: "#fff" }}>
+          자재로 발주 솔루션
+        </Link>
         <SidebarBtn onClick={() => setVisible(!visible)}>
           <FaBars />
         </SidebarBtn>

@@ -21,9 +21,9 @@ export const Button = styled.button<styledProps>`
   border: 1px solid #d9d9d9;
   color: #000;
   background-color: #fff;
-  box-sizing: border-box;
   text-align: center;
   font-size: 0.875rem;
+  box-sizing: border-box;
 
   ${(props: styledProps) =>
     props.fullWidth &&
@@ -42,12 +42,27 @@ export const Button = styled.button<styledProps>`
     css`
       background-color: ${(props) => props.theme.colors.primary} !important;
       color: #fff !important;
-      border: 0px !important;
+      /* border: 0px !important; */
       font-weight: 600;
 
       &:hover {
-        border: 0px !important;
+        /* border: 0px !important; */
         background-color: ${(props) => props.theme.opacity.p_80} !important;
+      }
+    `}
+
+        ${(props: styledProps) =>
+    props.status === "success" &&
+    css`
+      border: 1px solid var(--cus-color-success-border);
+      background-color: var(--cus-color-success-bg);
+      color: var(--cus-color-success);
+      font-weight: 600;
+
+      &:hover {
+        border: 1px solid var(--cus-color-success-border-hover) !important;
+        background-color: var(--cus-color-success-hover);
+        color: var(--cus-color-success-text-hover);
       }
     `}
 

@@ -88,7 +88,6 @@ const ClientList = () => {
       created_at: new Date().getDate(),
     });
   }
-  console.log("안녕");
 
   return (
     <ClientBlock>
@@ -102,7 +101,7 @@ const ClientList = () => {
             name: "시공업체관리",
             url: `/dcode/dcode`,
           },
-          { name: "상세정보", url: "" },
+          { name: "시공업체현황", url: "" },
         ]}
       />
       <Title
@@ -141,7 +140,6 @@ const ClientList = () => {
           </>
         }
       />
-      <Tag text="승인" color="success"></Tag>
     </ClientBlock>
   );
 };

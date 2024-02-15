@@ -70,6 +70,7 @@ function SignInForm({ signInResult, onSubmit }: any) {
             display: "flex",
             justifyContent: "center",
             marginBottom: "1rem",
+            color: "#000",
           }}
         >
           {/* <img src={LogoTypo} width={"65%"} /> */}

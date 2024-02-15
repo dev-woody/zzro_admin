@@ -60,7 +60,7 @@ export const sidebarList: sideListType[] = [
         url: "/client_work_list",
       },
       {
-        menuName: "시공업체 코드관리",
+        menuName: "탈퇴 코드관리",
         url: "/ind_cfg",
       },
     ],

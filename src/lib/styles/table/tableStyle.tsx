@@ -10,7 +10,6 @@ import {
   FaAngleDoubleRight,
   FaRegCaretSquareDown,
   FaRegCaretSquareUp,
-  FaRegSquare,
 } from "react-icons/fa";
 import { CheckBox } from "../checkBoxStyled";
 
@@ -53,7 +52,7 @@ const FilterBtn = styled.span`
 `;
 
 const StyledTableBlock = styled.div`
-  border: 1px solid var(--cus-color-border);
+  /* border: 1px solid var(--cus-color-border); */
   box-sizing: border-box;
   //todo 좌우 스크롤이 꼭 필요한가?
   overflow-x: scroll;
@@ -65,9 +64,10 @@ const StyledTableBlock = styled.div`
 
 const StyledTable = styled.table`
   border-collapse: collapse;
+  box-sizing: border-box;
   width: 100%;
   text-align: center;
-  box-sizing: border-box;
+  /* border: 1px solid var(--cus-color-border); */
 
   -ms-user-select: none;
   -moz-user-select: -moz-none;
@@ -76,9 +76,15 @@ const StyledTable = styled.table`
   user-select: none;
 
   th {
-    font-weight: 800;
+    font-weight: bold;
     background-color: var(--cus-color-fill-secondary);
-    border-bottom: 2px solid var(--cus-color-border);
+    border: 1px solid var(--cus-color-border);
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+  }
+
+  td {
+    border: 1px solid var(--cus-color-border);
   }
 
   th,
@@ -89,15 +95,13 @@ const StyledTable = styled.table`
     box-sizing: border-box;
   }
 
-  td + td,
-  th + th {
-    border-left: 1px solid var(--cus-color-border);
-    box-sizing: border-box;
-  }
-
-  tr:hover {
+  tbody tr:hover {
     background: var(--cus-color-fill-quaternary);
   }
+
+  /* tr:first-child:hover {
+    background: none;
+  } */
 
   /* tr:nth-child(2n + 0) {
     background-color: #dadada;
@@ -106,18 +110,10 @@ const StyledTable = styled.table`
     width: 50% !important;
     height: 46px !important;
   }
-
-  tbody.smallBy3 {
-    border-bottom: 1px solid var(--cus-color-border);
-  }
 `;
 
 const RowTable = styled.tr<trProps>`
   box-sizing: border-box;
-
-  & + & {
-    border-top: 1px solid var(--cus-color-border);
-  }
 
   ${(props: trProps) =>
     props.isSelected &&
