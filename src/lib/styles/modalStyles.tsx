@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import styled, { css } from "styled-components";
-import { Button } from "./buttonStyles";
+import { Button } from "./button/buttonStyles";
 
 type modalProps = {
   title: string;

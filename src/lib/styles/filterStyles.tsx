@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "./buttonStyles";
+import { Button } from "./button/buttonStyles";
 import { StyledInput } from "./input/inputStyles";
 import { useForm } from "react-hook-form";
 

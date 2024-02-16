@@ -239,7 +239,7 @@ const Dashboard = () => {
       com_name: "업체명",
       com_user: "작성자",
       created_at: "2024-02-14",
-      Astatus: i / 2 === 1 ? true : false,
+      Astatus: i % 2 === 1 ? true : false,
     });
   }
 

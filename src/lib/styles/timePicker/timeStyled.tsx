@@ -2,8 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 
 import { propsTypes } from "types/globalTypes";
-import { ErrorMsg } from "./globalStyles";
-import { Button } from "./buttonStyles";
+import { ErrorMsg } from "../globalStyles";
+import { Button } from "../button/buttonStyles";
 import { AiOutlineClockCircle } from "react-icons/ai";
 
 const hour: { name: string; id: string }[] = [];
@@ -124,12 +124,13 @@ const MenuBox = styled.div`
 const OptionItemList = styled.div`
   box-sizing: border-box;
   background-color: #fff;
-  width: 200px;
+  width: 400px;
   height: 200px;
   overflow: scroll;
 
   & + & {
     border-left: 1px solid #d9d9d9;
+    width: 200px;
   }
 `;
 
@@ -163,12 +164,11 @@ const OptionsLabelText = styled.div`
   font-size: 0.875rem;
 `;
 
-export const StyledTimePicker = (props: propsTypes) => {
+export const TimePicker = (props: propsTypes) => {
   const {
     placeholder,
     fullWidth,
     optionList,
-    isDepth,
     register,
     label,
     setValue,
@@ -177,6 +177,7 @@ export const StyledTimePicker = (props: propsTypes) => {
     status,
     index,
     align,
+    addMinute,
     ...rest
   } = props;
 
@@ -264,23 +265,27 @@ export const StyledTimePicker = (props: propsTypes) => {
                     </OptionMenu>
                   ))}
                 </OptionItemList>
-                <OptionItemList>
-                  {minute?.map((list: any, index: number) => (
-                    <OptionMenu
-                      key={index}
-                      onClick={() => {
-                        setIsMinute(list.id);
-                        setIsTitle(isHour + ":" + list.id);
-                      }}
-                    >
-                      <OptionLabel>
-                        <OptionsLabelText className="hoverColor">
-                          {list.name}
-                        </OptionsLabelText>
-                      </OptionLabel>
-                    </OptionMenu>
-                  ))}
-                </OptionItemList>
+                {addMinute ? (
+                  <OptionItemList>
+                    {minute?.map((list: any, index: number) => (
+                      <OptionMenu
+                        key={index}
+                        onClick={() => {
+                          setIsMinute(list.id);
+                          setIsTitle(isHour + ":" + list.id);
+                        }}
+                      >
+                        <OptionLabel>
+                          <OptionsLabelText className="hoverColor">
+                            {list.name}
+                          </OptionsLabelText>
+                        </OptionLabel>
+                      </OptionMenu>
+                    ))}
+                  </OptionItemList>
+                ) : (
+                  ""
+                )}
               </div>
               <div
                 style={{

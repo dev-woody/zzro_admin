@@ -11,6 +11,7 @@ import { lightTheme } from "theme/themes";
 import GlobalStyle from "lib/styles/globalStyles";
 import Dashboard from "components/dashboard";
 import Client from "components/client";
+import Customer from "components/customer";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -18,6 +19,7 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/client/*" element={<Client />} />
+        <Route path="/customer/*" element={<Customer />} />
       </Route>,
       <Route path="signIn" element={<SignInForm />}></Route>,
     ])

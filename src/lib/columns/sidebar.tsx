@@ -68,15 +68,15 @@ export const sidebarList: sideListType[] = [
   {
     icon: <FaIndustry />,
     name: "자재업체관리",
-    url: "/order",
+    url: "/customer",
     children: [
       {
         menuName: "자재업체 현황",
-        url: "/allList",
+        url: "/customer_list",
       },
       {
         menuName: "자재업체 코드관리",
-        url: "/beforePayment",
+        url: "/ind_cfg",
       },
     ],
   },
