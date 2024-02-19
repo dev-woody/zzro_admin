@@ -33,7 +33,7 @@ const TitleSpan = styled.span`
   margin-bottom: 0;
   color: #000000d9;
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 1.75rem;
   letter-spacing: 1px;
   line-height: 32px;
   overflow: hidden;

@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 
 import { BiUser, BiLock } from "react-icons/bi";
 import { response } from "types/globalTypes";
-import { BaseBlock } from "lib/styles";
 
 const SignInBlock = styled.div`
   width: 100vw;

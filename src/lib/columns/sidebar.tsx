@@ -83,17 +83,15 @@ export const sidebarList: sideListType[] = [
   {
     icon: <FaBox />,
     name: "자재관리",
-    url: "/promotion",
+    url: "/goods",
     children: [
       {
         menuName: "카테고리설정",
-        url: "/event",
-        disable: true,
+        url: "/goods_category",
       },
       {
         menuName: "자재등록설정",
         url: "/event",
-        disable: true,
       },
     ],
   },

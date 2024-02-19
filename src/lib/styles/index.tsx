@@ -12,7 +12,7 @@ import { ErrorMsg } from "./globalStyles";
 import { Table } from "./table/tableStyle";
 import { StyledToggle } from "./toggleStyle";
 import StyledFilter from "./filterStyles";
-import Modal from "./modalStyles";
+import Modal from "./modal/modalStyles";
 import { TimePicker } from "./timePicker/timeStyled";
 import { StyledUpload } from "./uploadStyles";
 import { StyledCategory } from "./checkBoxStyled";
@@ -22,6 +22,7 @@ import Tag from "./tag/tag";
 import { ProgressBar, ProgressData } from "./progressBar/progressBar";
 import Calender from "./calender/calender";
 import Tabs from "./tabs/tabsStyle";
+import Radio from "./radio/radioStyle";
 
 export {
   Button,
@@ -49,4 +50,5 @@ export {
   ProgressData,
   Calender,
   Tabs,
+  Radio,
 };

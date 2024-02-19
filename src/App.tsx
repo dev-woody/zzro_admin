@@ -12,6 +12,7 @@ import GlobalStyle from "lib/styles/globalStyles";
 import Dashboard from "components/dashboard";
 import Client from "components/client";
 import Customer from "components/customer";
+import Goods from "components/goods";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/client/*" element={<Client />} />
         <Route path="/customer/*" element={<Customer />} />
+        <Route path="/goods/*" element={<Goods />} />
       </Route>,
       <Route path="signIn" element={<SignInForm />}></Route>,
     ])
