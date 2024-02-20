@@ -11,7 +11,7 @@ import {
   FaRegCaretSquareDown,
   FaRegCaretSquareUp,
 } from "react-icons/fa";
-import { CheckBox } from "../checkBoxStyled";
+import Checkbox from "../checkBox/checkBox";
 
 interface trProps {
   isHover?: boolean;
@@ -315,7 +315,7 @@ export const Table = (props: propsTypes) => {
                     <div
                       style={{ marginRight: "0.5rem", display: "inline-block" }}
                     >
-                      <CheckBox isChecked={allcheck} onClick={onClickCheck} />
+                      <Checkbox />
                     </div>
                   ) : null}
                   {list.title}

@@ -4,6 +4,7 @@ import {
   Button,
   Modal,
   Radio,
+  Checkbox,
   StyledForm,
   StyledInput,
   Table,
@@ -71,6 +72,13 @@ const Categort1st = () => {
 
 const GoodsCategory = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [checked, setChecked] = useState<boolean>(false);
+
+  const options = [
+    { label: "Apple", value: "Apple" },
+    { label: "Pear", value: "Pear" },
+    { label: "Orange", value: "Orange" },
+  ];
 
   const CategotyColumns = [
     {
@@ -142,6 +150,12 @@ const GoodsCategory = () => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />
+      <Checkbox
+        title="내용"
+        checked={checked}
+        onClick={() => setChecked(!checked)}
+      />
+      <Checkbox.Group options={options} />
     </GoodsCategoryBlock>
   );
 };

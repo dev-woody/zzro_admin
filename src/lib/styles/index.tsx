@@ -15,7 +15,6 @@ import StyledFilter from "./filterStyles";
 import Modal from "./modal/modalStyles";
 import { TimePicker } from "./timePicker/timeStyled";
 import { StyledUpload } from "./uploadStyles";
-import { StyledCategory } from "./checkBoxStyled";
 import { BreadCrumb } from "./breadcrumb/breadcrumb";
 import Title from "./title/titleStyles";
 import Tag from "./tag/tag";
@@ -23,6 +22,7 @@ import { ProgressBar, ProgressData } from "./progressBar/progressBar";
 import Calender from "./calender/calender";
 import Tabs from "./tabs/tabsStyle";
 import Radio from "./radio/radioStyle";
+import Checkbox from "./checkBox";
 
 export {
   Button,
@@ -42,7 +42,6 @@ export {
   ErrorMsg,
   TimePicker,
   StyledUpload,
-  StyledCategory,
   BreadCrumb,
   Title,
   Tag,
@@ -51,4 +50,5 @@ export {
   Calender,
   Tabs,
   Radio,
+  Checkbox,
 };
