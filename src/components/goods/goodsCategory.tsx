@@ -16,6 +16,11 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { GetProp } from "types/globalTypes";
+import { CheckboxProps } from "lib/styles/checkBox";
+import { RadioChangeEvent } from "lib/styles/radio/interface";
+
+type CheckboxValueType = GetProp<typeof Checkbox.Group, "value">[number];
 
 const GoodsCategoryBlock = styled(BaseBlock)``;
 
@@ -50,6 +55,12 @@ const Categort1st = () => {
     },
   });
 
+  const [value, setValue] = useState(1);
+  const onChange = (e: RadioChangeEvent) => {
+    console.log("radio checked", e.target.value);
+    setValue(e.target.value);
+  };
+
   return (
     <StyledForm>
       <StyledInput
@@ -60,19 +71,20 @@ const Categort1st = () => {
         errors={errors}
         status={errors.ctg_name}
       />
-      <label>
-        <Radio text="선택" name="select" />
-      </label>
-      <label>
-        <Radio text="미선택" name="select" />
-      </label>
+      <Radio.Group name="radiogroup">
+        <Radio name="select" value={1}>
+          선택
+        </Radio>
+        <Radio name="select" value={2}>
+          미선택
+        </Radio>
+      </Radio.Group>
     </StyledForm>
   );
 };
 
 const GoodsCategory = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const [checked, setChecked] = useState<boolean>(false);
 
   const options = [
     { label: "Apple", value: "Apple" },
@@ -150,11 +162,7 @@ const GoodsCategory = () => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />
-      <Checkbox
-        title="내용"
-        checked={checked}
-        onClick={() => setChecked(!checked)}
-      />
+      <Checkbox>내용</Checkbox>
       <Checkbox.Group options={options} />
     </GoodsCategoryBlock>
   );

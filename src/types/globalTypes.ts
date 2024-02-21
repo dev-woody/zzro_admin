@@ -38,3 +38,16 @@ export interface userType {
     password: null;
   };
 }
+
+export type GetProps<T extends React.ComponentType<any> | object> = T extends React.ComponentType<
+  infer P
+>
+  ? P
+  : T extends object
+    ? T
+    : never;
+
+export type GetProp<
+  T extends React.ComponentType<any> | object,
+  PropName extends keyof GetProps<T>,
+> = NonNullable<GetProps<T>[PropName]>;

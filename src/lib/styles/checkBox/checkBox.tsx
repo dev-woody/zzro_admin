@@ -2,6 +2,7 @@ import { CheckboxRef } from "rc-checkbox";
 import * as React from "react";
 import { BiCheckbox, BiCheckboxChecked } from "react-icons/bi";
 import styled, { css } from "styled-components";
+import GroupContext from "./groupContext";
 
 export interface AbstractCheckboxProps<T> {
   className?: string;
@@ -46,21 +47,25 @@ export interface CheckboxProps
 
 const CheckboxBlock = styled.div`
   padding: 0.5rem 0;
-  min-width: 200px;
+  width: fit-content;
+
+  & + & {
+    margin-left: 1rem;
+  }
 `;
 
-const CheckboxLabel = styled.label`
+const CheckboxLabel = styled.label<CheckboxProps>`
   display: flex;
   align-items: center;
-  width: inherit;
   &:hover {
     cursor: pointer;
   }
 `;
 
-const CheckboxText = styled.div`
+const CheckboxText = styled.div<CheckboxProps>`
   margin-left: 0.5rem;
   font-size: 0.75rem;
+  line-height: 1.2;
 `;
 
 const InternalCheckbox: React.ForwardRefRenderFunction<
@@ -68,8 +73,6 @@ const InternalCheckbox: React.ForwardRefRenderFunction<
   CheckboxProps
 > = (props, ref) => {
   const {
-    checked,
-    title,
     className,
     rootClassName,
     children,
@@ -82,14 +85,11 @@ const InternalCheckbox: React.ForwardRefRenderFunction<
     disabled,
     ...restProps
   } = props;
-  // const [checked, setChecked] = useState<boolean>(false);
+  const [checked, setChecked] = React.useState<boolean>(false);
 
-  // const onChecked = () => {
-  //   setChecked(!checked);
-  // };
   return (
-    <CheckboxBlock style={style} onClick={onClick}>
-      <CheckboxLabel htmlFor="checkBox">
+    <CheckboxBlock style={style}>
+      <CheckboxLabel htmlFor="checkBox" onClick={() => setChecked(!checked)}>
         {checked ? (
           <BiCheckboxChecked
             style={{ color: "var(--cus-color-primary-text)" }}
@@ -98,17 +98,13 @@ const InternalCheckbox: React.ForwardRefRenderFunction<
         ) : (
           <BiCheckbox size={24} />
         )}
-        <CheckboxText>{title}</CheckboxText>
-        <input type="checkbox" checked={checked} style={{ display: "none" }} />
+        <CheckboxText >{children}</CheckboxText>
+        <input type="checkbox"  style={{ display: "none" }} />
       </CheckboxLabel>
     </CheckboxBlock>
   );
 };
 
 const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(InternalCheckbox);
-
-if (process.env.NODE_ENV !== "production") {
-  Checkbox.displayName = "Checkbox";
-}
 
 export default Checkbox;

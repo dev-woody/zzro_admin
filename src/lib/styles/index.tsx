@@ -21,7 +21,7 @@ import Tag from "./tag/tag";
 import { ProgressBar, ProgressData } from "./progressBar/progressBar";
 import Calender from "./calender/calender";
 import Tabs from "./tabs/tabsStyle";
-import Radio from "./radio/radioStyle";
+import Radio from "./radio";
 import Checkbox from "./checkBox";
 
 export {
