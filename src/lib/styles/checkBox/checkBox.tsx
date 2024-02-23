@@ -98,8 +98,8 @@ const InternalCheckbox: React.ForwardRefRenderFunction<
         ) : (
           <BiCheckbox size={24} />
         )}
-        <CheckboxText >{children}</CheckboxText>
-        <input type="checkbox"  style={{ display: "none" }} />
+        <CheckboxText>{children}</CheckboxText>
+        <input type="checkbox" checked={checked} style={{ display: "none" }} />
       </CheckboxLabel>
     </CheckboxBlock>
   );

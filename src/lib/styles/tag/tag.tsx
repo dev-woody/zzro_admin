@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-interface PropsType {
+interface TagProps {
   text: string;
   color?: string;
 }
@@ -49,7 +49,8 @@ const TagBlock = styled.div<{ color?: string }>`
     `}
 `;
 
-const Tag = ({ text, color }: PropsType) => {
+const Tag = (props: TagProps) => {
+  const { text, color } = props;
   return <TagBlock color={color}>{text}</TagBlock>;
 };
 

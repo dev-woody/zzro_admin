@@ -9,7 +9,7 @@ import {
   PassShowBlock,
 } from "lib/styles/input/inputStyles";
 import { ErrorMsg } from "./globalStyles";
-import { Table } from "./table/tableStyle";
+import { Table } from "./table/table";
 import { StyledToggle } from "./toggleStyle";
 import StyledFilter from "./filterStyles";
 import Modal from "./modal/modalStyles";

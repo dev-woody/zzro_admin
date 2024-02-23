@@ -1,7 +1,9 @@
 import React from "react";
+import classNames from "classnames";
+import { composeRef } from "rc-util/lib/ref";
 import { RadioChangeEvent, RadioProps, RadioRef } from "./interface";
 import RcCheckbox from "rc-checkbox";
-import RadioGroupContext from "./context";
+import RadioGroupContext, { RadioOptionTypeContext } from "./context";
 
 const InternalRadio: React.ForwardRefRenderFunction<RadioRef, RadioProps> = (
   props,
@@ -53,7 +55,7 @@ const InternalRadio: React.ForwardRefRenderFunction<RadioRef, RadioProps> = (
     //   {children !== undefined ? <span>{children}</span> : null}
     // </label>
     <label>
-      <input type="radio" {...radioProps} />
+      <input type="radio" name={restProps.name} />
       {children}
     </label>
   );

@@ -91,7 +91,7 @@ export const sidebarList: sideListType[] = [
       },
       {
         menuName: "자재등록설정",
-        url: "/event",
+        url: "/goods_list",
       },
     ],
   },

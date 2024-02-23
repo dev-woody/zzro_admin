@@ -1,3 +1,4 @@
+import React from "react";
 import styled, { css } from "styled-components";
 import { propsTypes } from "types/globalTypes";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +14,29 @@ import {
 } from "react-icons/fa";
 import Checkbox from "../checkBox/checkBox";
 
+export interface AbstractTableProps<T> {
+  columns: string;
+  content: T;
+  url: string;
+  searchParams?: any;
+  setSearchParams?: any;
+  moveKey?: string;
+  pagenation: boolean;
+  pageCount: number;
+  // doNoting;
+  // action;
+  // align;
+  // filter;
+  // isSearch;
+  // filterInput;
+}
+
+export interface TableContents {
+  [key: string]: any;
+}
+
+export interface TableProps extends AbstractTableProps<TableContents[]> {}
+
 interface trProps {
   isHover?: boolean;
   isSelected?: boolean;
@@ -23,22 +47,6 @@ interface pagenationProps {
   disabled?: boolean;
   isFocus?: boolean;
 }
-
-const FilterBlock = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 0.825rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-`;
-
-const FilterOptionBlock = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  & > div:first-child {
-    margin-left: 0;
-  }
-`;
 
 const FilterBtn = styled.span`
   margin-left: 0.25rem;
@@ -183,22 +191,19 @@ const PageNationButton = styled.button<pagenationProps>`
     `}
 `;
 
-export const Table = (props: propsTypes) => {
+export const InternalTable = (props: TableProps) => {
   const {
     columns,
     content,
     url,
-    searchParams,
-    setSearchParams,
-    moveKey,
+    // searchParams,
+    // setSearchParams,
+    // moveKey,
     pagenation,
-    pageCount,
-    doNoting,
-    action,
-    align,
+    // pageCount,
+    // doNoting,
+    // action,
     filter,
-    isSearch,
-    filterInput,
   } = props;
   const navigate = useNavigate();
   const nowPage = Number(atob(searchParams?.get("n") || btoa("0")));
@@ -296,12 +301,6 @@ export const Table = (props: propsTypes) => {
 
   return (
     <>
-      {filter && (
-        <FilterBlock>
-          <FilterOptionBlock>{filterInput}</FilterOptionBlock>
-          {isSearch && <StyledSearchInput />}
-        </FilterBlock>
-      )}
       <StyledTableBlock>
         <StyledTable>
           <thead>
@@ -408,3 +407,7 @@ export const Table = (props: propsTypes) => {
     </>
   );
 };
+
+const Table = React.forwardRef<TableProps>(InternalTable);
+
+export default Table;
