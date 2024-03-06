@@ -10,6 +10,7 @@ import {
   Table,
   Tag,
   Title,
+  StyledSelect,
 } from "lib/styles";
 import { useState } from "react";
 import styled from "styled-components";
@@ -23,6 +24,85 @@ import { RadioChangeEvent } from "lib/styles/radio/interface";
 type CheckboxValueType = GetProp<typeof Checkbox.Group, "value">[number];
 
 const GoodsListBlock = styled(BaseBlock)``;
+
+const testList = [{ name: "테스트", id: "test" }];
+
+const categoryFilter = [
+  {
+    title: "카테고리",
+    filterSource: (
+      <div style={{ display: "flex" }}>
+        <StyledSelect
+          placeholder="목록 수"
+          optionList={testList}
+          actions={(id: string) => console.log(id)}
+          style={{ marginRight: "0.5rem" }}
+        />
+        <StyledSelect
+          placeholder="목록 수"
+          optionList={testList}
+          actions={(id: string) => console.log(id)}
+          style={{ marginRight: "0.5rem" }}
+        />
+        <StyledSelect
+          placeholder="목록 수"
+          optionList={testList}
+          actions={(id: string) => console.log(id)}
+        />
+      </div>
+    ),
+  },
+  {
+    title: "진열상태",
+    filterSource: (
+      <StyledSelect
+        placeholder="목록 수"
+        optionList={testList}
+        actions={(id: string) => console.log(id)}
+      />
+    ),
+  },
+  {
+    title: "자재명",
+    filterSource: (
+      <StyledSelect
+        placeholder="목록 수"
+        optionList={testList}
+        actions={(id: string) => console.log(id)}
+      />
+    ),
+  },
+  {
+    title: "자재업체",
+    filterSource: (
+      <StyledSelect
+        placeholder="목록 수"
+        optionList={testList}
+        actions={(id: string) => console.log(id)}
+      />
+    ),
+  },
+  {
+    title: "연동상태",
+    filterSource: (
+      <StyledSelect
+        placeholder="목록 수"
+        optionList={testList}
+        actions={(id: string) => console.log(id)}
+      />
+    ),
+  },
+  {
+    title: "목록 수",
+    filterSource: (
+      <StyledSelect
+        placeholder="목록 수"
+        optionList={testList}
+        actions={(id: string) => console.log(id)}
+      />
+    ),
+  },
+];
 
 const categoryData = [
   {
@@ -86,31 +166,27 @@ const Categort1st = () => {
 const GoodsList = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-  const options = [
-    { label: "Apple", value: "Apple" },
-    { label: "Pear", value: "Pear" },
-    { label: "Orange", value: "Orange" },
-  ];
-
-  const CategotyColumns = [
+  const goodsColumns = [
     {
-      title: "순서",
+      title: "",
       dataIndex: "index",
+      render: () => <Checkbox />,
+      isCheck: true,
     },
     {
-      title: "번호",
+      title: "납품가",
       dataIndex: "num",
     },
     {
-      title: "카테고리명",
+      title: "번호",
       dataIndex: "ctg_name",
     },
     {
-      title: "사용횟수",
+      title: "이미지",
       dataIndex: "use_num",
     },
     {
-      title: "공개여부",
+      title: "카테고리/자제명",
       dataIndex: "showYn",
       render: (showYn: boolean) =>
         showYn ? (
@@ -118,21 +194,38 @@ const GoodsList = () => {
         ) : (
           <Tag color="error" text="비공개" />
         ),
+      width: "30%",
     },
     {
-      title: "1차 카테고리 수정",
+      title: "",
       dataIndex: "edit_1st",
-      render: () => (
-        <Button onClick={() => setModalVisible(true)}>1차 카테고리 수정</Button>
-      ),
+      render: () => <Checkbox />,
+      isCheck: true,
     },
     {
-      title: "2차 카테고리 수정",
+      title: "진열",
       dataIndex: "edit_2nd",
-      render: () => <Button>2차 카테고리 설정</Button>,
+      render: (showYn: boolean) =>
+        showYn ? (
+          <Tag color="success" text="진열" />
+        ) : (
+          <Tag color="error" text="미진열" />
+        ),
     },
     {
-      title: "2차 카테고리 분류갯수",
+      title: "자재안내",
+      dataIndex: "sort_2nd",
+    },
+    {
+      title: "판매가",
+      dataIndex: "sort_2nd",
+    },
+    {
+      title: "판매업체",
+      dataIndex: "sort_2nd",
+    },
+    {
+      title: "등록수정",
       dataIndex: "sort_2nd",
     },
   ];
@@ -153,7 +246,11 @@ const GoodsList = () => {
         ]}
       />
       <Title title={"카테고리 설정"} />
-      <Table columns={CategotyColumns} content={categoryData} />
+      <Table.Filter
+        columns={goodsColumns}
+        content={categoryData}
+        filter={categoryFilter}
+      />
       <Modal
         title="제품분류"
         msg={<Categort1st />}
@@ -162,8 +259,6 @@ const GoodsList = () => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />
-      <Checkbox>내용</Checkbox>
-      <Checkbox.Group options={options} />
     </GoodsListBlock>
   );
 };

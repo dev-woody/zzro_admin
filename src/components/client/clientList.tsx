@@ -33,6 +33,43 @@ type ColumnsType = {
   ) => JSX.Element | string | number | undefined;
 };
 
+const filterItem = [
+  {
+    title: "지역별 조회",
+    filterSource: (
+      <StyledSelect
+        placeholder="지역별 조회"
+        optionList={localList}
+        actions={(id: string) => console.log(id)}
+      />
+    ),
+  },
+  {
+    title: "승인상태",
+    filterSource: (
+      <StyledSelect
+        placeholder="승인상태"
+        optionList={approveList}
+        actions={(id: string) => console.log(id)}
+      />
+    ),
+  },
+  {
+    title: "목록 수",
+    filterSource: (
+      <StyledSelect
+        placeholder="목록 수"
+        optionList={pageNumList}
+        actions={(id: string) => console.log(id)}
+      />
+    ),
+  },
+  {
+    title: "",
+    filterSource: null,
+  },
+];
+
 const deliveryCodeColumns: ColumnsType[] = [
   {
     title: "번호",
@@ -66,6 +103,10 @@ const deliveryCodeColumns: ColumnsType[] = [
     dataIndex: "com_num",
   },
   {
+    title: "사업장주소",
+    dataIndex: "com_addr",
+  },
+  {
     title: "담당자명 (연락처)",
     dataIndex: "com_mobile",
   },
@@ -76,7 +117,19 @@ const deliveryCodeColumns: ColumnsType[] = [
 ];
 
 const ClientList = () => {
-  let data = [];
+  let data = [
+    {
+      approval: "승인",
+      area: "서울",
+      com_name: "한샘리하우스 더미르대리점",
+      com_id: "12345678",
+      com_num: "808-40-12345",
+      com_addr: "인천 부평구 수변로 334 (삼산동, 신성미소지움아파트)",
+      com_mobile: "홍길동(010-1234-5678)",
+      created_at: "2023-12-05",
+    },
+  ];
+
   for (let i = 0; i < 20; i++) {
     data.push({
       approval: "승인",
@@ -84,8 +137,9 @@ const ClientList = () => {
       com_name: i + "회사명",
       com_id: i + "아이디",
       com_num: i + "사업자번호",
+      com_addr: i + "사업장주소",
       com_mobile: i + "휴대전화번호",
-      created_at: new Date().getDate(),
+      created_at: new Date().getDate().toString(),
     });
   }
 
@@ -113,32 +167,14 @@ const ClientList = () => {
           </Button>
         }
       />
-      <Table
+      <Table.Filter
         columns={deliveryCodeColumns}
         content={data}
-        filter
-        isSearch
+        // filter
+        // isSearch
         // filterInput={"안녕"}
         pagenation
-        filterInput={
-          <>
-            <StyledSelect
-              placeholder="지역별 조회"
-              optionList={localList}
-              actions={(id: string) => console.log(id)}
-            />
-            <StyledSelect
-              placeholder="승인상태"
-              optionList={approveList}
-              actions={(id: string) => console.log(id)}
-            />
-            <StyledSelect
-              placeholder="리스트 수"
-              optionList={pageNumList}
-              actions={(id: string) => console.log(id)}
-            />
-          </>
-        }
+        filter={filterItem}
       />
     </ClientBlock>
   );

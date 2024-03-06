@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "./button/buttonStyles";
-import { StyledInput } from "./input/inputStyles";
+import { StyledInput } from "./input/input";
 import { useForm } from "react-hook-form";
 
 const StyledFilterBlock = styled.form`

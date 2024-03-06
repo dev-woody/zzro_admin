@@ -20,15 +20,16 @@ type formProps = {
 };
 
 const SelectBlock = styled.div<formProps>`
-  display: flex;
-  flex-direction: column;
+  width: fit-content;
+  /* display: flex; */
+  /* flex-direction: column; */
   position: relative;
   /* z-index: 100; */
   min-width: 200px;
   white-space: nowrap;
   user-select: none;
 
-  margin-right: 1rem;
+  /* margin-right: 1rem; */
 
   & * {
     font-size: 0.875rem;
@@ -278,6 +279,7 @@ export const StyledSelect = (props: propsTypes) => {
       onClick={(e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
       }}
+      {...rest}
     >
       {label && (
         <input

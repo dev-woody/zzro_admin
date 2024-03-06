@@ -1,32 +1,55 @@
 import React from "react";
-import { TableContents, AbstractTableProps } from "./table";
+import Table, { TableProps } from "./table";
 import styled from "styled-components";
+import { StyledTableBlock, StyledTable } from "./table";
 
-export interface FilterProps extends AbstractTableProps<TableContents[]> {
-  filter: React.ReactElement;
+export interface FilterProps extends TableProps {
+  filter: { title: string; filterSource: JSX.Element | null }[];
 }
 
 const FilterBlock = styled.div`
-  display: flex;
+  /* display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 0 0.825rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
+  max-width: 100% !important;
+  overflow-x: scroll;
 `;
 
-const FilterOptionBlock = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  & > div:first-child {
-    margin-left: 0;
+const FilterOptionBlock = styled(StyledTable)`
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  margin-bottom: 1rem;
+
+  .width100 {
+    width: 100%;
   }
 `;
 
 const FilterTable = (props: FilterProps) => {
-  const { filter } = props;
+  const { filter, ...rest } = props;
   return (
     <FilterBlock>
-      <FilterOptionBlock>{filter}</FilterOptionBlock>
+      <StyledTableBlock>
+        <FilterOptionBlock>
+          <tr>
+            {filter.map((item) => (
+              <th>{item.title}</th>
+              // <td>
+              //   <li>{item.filterSource}</li>
+              // </td>
+            ))}
+          </tr>
+          <tr>
+            {filter.map((item) => (
+              <td className={item.filterSource === null ? "width100" : ""}>
+                {item.filterSource}
+              </td>
+            ))}
+          </tr>
+        </FilterOptionBlock>
+      </StyledTableBlock>
+      <Table {...rest} />
     </FilterBlock>
   );
 };

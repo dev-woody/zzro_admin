@@ -117,6 +117,23 @@ const schema = yup.object({
   password: yup.string().required("비밀번호를 입력해주세요."),
 });
 
+const filterSource = [
+  {
+    title: "시공업체명",
+    filterSource: (
+      <StyledSelect
+        placeholder="시공업체"
+        optionList={localList}
+        actions={(id: string) => console.log(id)}
+      />
+    ),
+  },
+  {
+    title: "",
+    filterSource: null,
+  },
+];
+
 const ClientWorkList = () => {
   const {
     register,
@@ -166,20 +183,20 @@ const ClientWorkList = () => {
           </Button>
         }
       />
-      <Table
+      <Table.Filter
         columns={deliveryCodeColumns}
         content={data}
-        filter
-        isSearch
+        filter={filterSource}
+        // isSearch
         // filterInput={"안녕"}
         pagenation
-        filterInput={
-          <StyledSelect
-            placeholder="시공업체"
-            optionList={localList}
-            actions={(id: string) => console.log(id)}
-          />
-        }
+        // filterInput={
+        //   <StyledSelect
+        //     placeholder="시공업체"
+        //     optionList={localList}
+        //     actions={(id: string) => console.log(id)}
+        //   />
+        // }
       />
     </ClientWorkBlock>
   );

@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AlignBox } from "../globalStyles";
 
-import { StyledSearchInput } from "../input/inputStyles";
+import { type TableProps as RcTableProps } from "rc-table";
+
+import { StyledSearchInput } from "../input/input";
 import {
   FaAngleDoubleLeft,
   FaAngleDoubleRight,
@@ -13,17 +15,19 @@ import {
   FaRegCaretSquareUp,
 } from "react-icons/fa";
 import Checkbox from "../checkBox/checkBox";
+import { UseFormRegister } from "react-hook-form";
 
 export interface AbstractTableProps<T> {
-  columns: string;
+  columns: any;
   content: T;
-  url: string;
+  url?: string;
   searchParams?: any;
   setSearchParams?: any;
   moveKey?: string;
-  pagenation: boolean;
-  pageCount: number;
-  // doNoting;
+  pagenation?: boolean;
+  pageCount?: number;
+  doNoting?: boolean;
+  // register?: UseFormRegister<{ [key: string]: string }>;
   // action;
   // align;
   // filter;
@@ -35,7 +39,24 @@ export interface TableContents {
   [key: string]: any;
 }
 
-export interface TableProps extends AbstractTableProps<TableContents[]> {}
+export interface TableProps<RecordType = any>
+  extends Omit<RcTableProps<RecordType>, "data" | "columns"> {
+  columns: any;
+  content: RcTableProps<RecordType>["data"];
+  url?: string;
+  searchParams?: any;
+  setSearchParams?: any;
+  moveKey?: string;
+  pagenation?: boolean;
+  pageCount?: number;
+  doNoting?: boolean;
+  // register?: UseFormRegister<{ [key: string]: string }>;
+  // action;
+  // align;
+  // filter;
+  // isSearch;
+  // filterInput;
+}
 
 interface trProps {
   isHover?: boolean;
@@ -59,7 +80,8 @@ const FilterBtn = styled.span`
   }
 `;
 
-const StyledTableBlock = styled.div`
+export const StyledTableBlock = styled.div`
+  width: 100%;
   /* border: 1px solid var(--cus-color-border); */
   box-sizing: border-box;
   //todo 좌우 스크롤이 꼭 필요한가?
@@ -70,7 +92,7 @@ const StyledTableBlock = styled.div`
   }
 `;
 
-const StyledTable = styled.table`
+export const StyledTable = styled.table`
   border-collapse: collapse;
   box-sizing: border-box;
   width: 100%;
@@ -114,10 +136,6 @@ const StyledTable = styled.table`
   /* tr:nth-child(2n + 0) {
     background-color: #dadada;
   } */
-  tbody tr.category td {
-    width: 50% !important;
-    height: 46px !important;
-  }
 `;
 
 const RowTable = styled.tr<trProps>`
@@ -191,19 +209,20 @@ const PageNationButton = styled.button<pagenationProps>`
     `}
 `;
 
-export const InternalTable = (props: TableProps) => {
+// const InternalTable: React.ForwardRefRenderFunction<ColumnRef, TableProps> = (
+const InternalTable = (props: TableProps) => {
   const {
     columns,
     content,
     url,
-    // searchParams,
-    // setSearchParams,
-    // moveKey,
+    searchParams,
+    setSearchParams,
+    moveKey,
     pagenation,
-    // pageCount,
-    // doNoting,
+    pageCount,
+    doNoting,
     // action,
-    filter,
+    // filter,
   } = props;
   const navigate = useNavigate();
   const nowPage = Number(atob(searchParams?.get("n") || btoa("0")));
@@ -223,8 +242,8 @@ export const InternalTable = (props: TableProps) => {
   // const data = useSliceData(content);
 
   const onClickCheck = () => {
-    if (content.length !== 0) {
-      content.map((dataList: any) => {
+    if (content?.length !== 0) {
+      content?.map((dataList: any) => {
         dataList.isChecked = !allcheck;
       });
       setAllCheck(!allcheck);
@@ -233,7 +252,7 @@ export const InternalTable = (props: TableProps) => {
 
   const Pagenation = ({ data }: { data: any }) => {
     // const numPages = Math.ceil(data?.length / limit) || 1;
-    const numPages = Math.ceil(pageCount / limit) || 1;
+    const numPages = (pageCount && Math.ceil(pageCount / limit)) || 1;
     const dataArray = () => {
       let data = [];
       for (let i = 0; i < numPages; i++) {
@@ -252,7 +271,7 @@ export const InternalTable = (props: TableProps) => {
         >
           <FaAngleDoubleLeft />
         </PageNationButton>
-        {data ? (
+        {data && pageCount ? (
           dataArray().map((_, i) => {
             return (
               <PageNationButton
@@ -308,7 +327,7 @@ export const InternalTable = (props: TableProps) => {
               {columns?.map((list: any, index: number) => (
                 <th
                   key={index}
-                  style={{ width: (1 / columns.length) * 100 + "%" }}
+                  // style={{ width: (1 / columns.length) * 100 + "%" }}
                 >
                   {list.isCheck ? (
                     <div
@@ -318,7 +337,7 @@ export const InternalTable = (props: TableProps) => {
                     </div>
                   ) : null}
                   {list.title}
-                  {filter && list.isDesc ? (
+                  {/* {filter && list.isDesc ? (
                     <FilterBtn>
                       {isDesc ? (
                         <FaRegCaretSquareUp />
@@ -326,55 +345,58 @@ export const InternalTable = (props: TableProps) => {
                         <FaRegCaretSquareDown />
                       )}
                     </FilterBtn>
-                  ) : null}
+                  ) : null} */}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {content?.length > 0 ? (
+            {content?.length && content?.length > 0 ? (
               content?.map((contentList: any, rowIndex: number) => (
                 <RowTable
                   isHover
                   doNoting={doNoting}
                   key={rowIndex}
-                  className={action ? "category" : undefined}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (action && url && moveKey) {
-                      action(contentList.id);
-                      setSelectedRow(contentList?.id);
-                    } else if (doNoting) {
-                      return;
-                    } else {
-                      if (typeof moveKey === "object") {
-                        if (moveKey.length > 2) {
-                          navigate(
-                            `${url}/${
-                              contentList[moveKey[0]][moveKey[1]][moveKey[2]]
-                            }`
-                          );
-                        } else {
-                          navigate(
-                            `${url}/${contentList[moveKey[0]][moveKey[1]]}`
-                          );
-                        }
-                      } else if (typeof moveKey === "string") {
-                        navigate(`${url}/${contentList.moveKey}`);
-                      }
-                    }
-                  }}
-                  isSelected={
-                    action
-                      ? contentList.id === selectedRow
-                        ? true
-                        : false
-                      : false
-                  }
+                  // className={action ? "category" : undefined}
+                  // onClick={(e) => {
+                  //   e.stopPropagation();
+                  //   if (action && url && moveKey) {
+                  //     action(contentList.id);
+                  //     setSelectedRow(contentList?.id);
+                  //   } else if (doNoting) {
+                  //     return;
+                  //   } else {
+                  //     if (typeof moveKey === "object") {
+                  //       if (moveKey.length > 2) {
+                  //         navigate(
+                  //           `${url}/${
+                  //             contentList[moveKey[0]][moveKey[1]][moveKey[2]]
+                  //           }`
+                  //         );
+                  //       } else {
+                  //         navigate(
+                  //           `${url}/${contentList[moveKey[0]][moveKey[1]]}`
+                  //         );
+                  //       }
+                  //     } else if (typeof moveKey === "string") {
+                  //       navigate(`${url}/${contentList.moveKey}`);
+                  //     }
+                  //   }
+                  // }}
+                  // isSelected={
+                  //   action
+                  //     ? contentList.id === selectedRow
+                  //       ? true
+                  //       : false
+                  //     : false
+                  // }
                 >
                   {columns.map((list: any, index: number) => {
                     return list.render ? (
-                      <td style={{ height: "46px" }} key={index}>
+                      <td
+                        style={{ height: "46px", width: list.width }}
+                        key={index}
+                      >
                         <div
                           style={{
                             display: "flex",
@@ -408,6 +430,6 @@ export const InternalTable = (props: TableProps) => {
   );
 };
 
-const Table = React.forwardRef<TableProps>(InternalTable);
+const Table = React.forwardRef<ReferenceError, TableProps>(InternalTable);
 
 export default Table;

@@ -121,29 +121,29 @@ const CustomerList = () => {
       <Table
         columns={deliveryCodeColumns}
         content={data}
-        filter
-        isSearch
+        // filter
+        // isSearch
         // filterInput={"안녕"}
         pagenation
-        filterInput={
-          <>
-            <StyledSelect
-              placeholder="지역별 조회"
-              optionList={localList}
-              actions={(id: string) => console.log(id)}
-            />
-            <StyledSelect
-              placeholder="승인상태"
-              optionList={approveList}
-              actions={(id: string) => console.log(id)}
-            />
-            <StyledSelect
-              placeholder="리스트 수"
-              optionList={pageNumList}
-              actions={(id: string) => console.log(id)}
-            />
-          </>
-        }
+        // filterInput={
+        //   <>
+        //     <StyledSelect
+        //       placeholder="지역별 조회"
+        //       optionList={localList}
+        //       actions={(id: string) => console.log(id)}
+        //     />
+        //     <StyledSelect
+        //       placeholder="승인상태"
+        //       optionList={approveList}
+        //       actions={(id: string) => console.log(id)}
+        //     />
+        //     <StyledSelect
+        //       placeholder="목록 수"
+        //       optionList={pageNumList}
+        //       actions={(id: string) => console.log(id)}
+        //     />
+        //   </>
+        // }
       />
     </CustomerBlock>
   );

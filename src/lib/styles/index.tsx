@@ -7,9 +7,9 @@ import {
   StyledInput,
   StyledSearchInput,
   PassShowBlock,
-} from "lib/styles/input/inputStyles";
+} from "lib/styles/input/input";
 import { ErrorMsg } from "./globalStyles";
-import { Table } from "./table/table";
+import Table from "./table";
 import { StyledToggle } from "./toggleStyle";
 import StyledFilter from "./filterStyles";
 import Modal from "./modal/modalStyles";
