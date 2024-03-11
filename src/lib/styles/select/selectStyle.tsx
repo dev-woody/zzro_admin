@@ -24,8 +24,8 @@ const SelectBlock = styled.div<formProps>`
   /* display: flex; */
   /* flex-direction: column; */
   position: relative;
-  /* z-index: 100; */
-  min-width: 200px;
+  z-index: 100;
+  width: 200px;
   white-space: nowrap;
   user-select: none;
 
@@ -52,8 +52,8 @@ const SelectedBlock = styled.div<styledSelectTyps>`
   box-sizing: border-box;
   color: #737373;
   background-color: #fff;
-  width: 200px;
-  min-width: 200px;
+  width: inherit;
+  /* min-width: 100px; */
   white-space: nowrap;
   border: 1px solid #d9d9d9;
   border-radius: 0.75rem;
@@ -102,6 +102,7 @@ const SelectedBlock = styled.div<styledSelectTyps>`
 const OptionBlock = styled.div`
   position: relative;
   box-sizing: border-box;
+  width: inherit;
   z-index: 100;
 `;
 
@@ -116,7 +117,8 @@ const OptionMenuList = styled.div<styledSelectTyps>`
   height: 0;
   opacity: 0;
   transition: 0.2s;
-  min-width: 200px;
+  width: inherit;
+  /* min-width: 200px; */
   white-space: nowrap;
   overflow: hidden;
   margin: 0;
@@ -124,6 +126,7 @@ const OptionMenuList = styled.div<styledSelectTyps>`
   background-color: #fff;
   border: 0;
   border-radius: 0.75rem;
+  z-index: 100;
 
   ${(props: styledSelectTyps) =>
     props.isOpen &&
@@ -273,7 +276,7 @@ export const StyledSelect = (props: propsTypes) => {
   return (
     <SelectBlock
       ref={selectMenu}
-      style={index ? { zIndex: `${index}` } : undefined}
+      // style={index ? { zIndex: `${index}` } : undefined}
       fullWidth={fullWidth}
       align={align}
       onClick={(e: React.MouseEvent<HTMLDivElement>) => {
@@ -290,7 +293,7 @@ export const StyledSelect = (props: propsTypes) => {
           {...register(label)}
         />
       )}
-      <div>
+      <div style={{ width: "inherit" }}>
         <SelectedBlock
           isOpen={isOpen}
           status={status}

@@ -29,48 +29,23 @@ const testList = [{ name: "테스트", id: "test" }];
 
 const categoryFilter = [
   {
-    title: "카테고리",
-    filterSource: (
-      <div style={{ display: "flex" }}>
-        <StyledSelect
-          placeholder="목록 수"
-          optionList={testList}
-          actions={(id: string) => console.log(id)}
-          style={{ marginRight: "0.5rem", width: "100px" }}
-        />
-        <StyledSelect
-          placeholder="목록 수"
-          optionList={testList}
-          actions={(id: string) => console.log(id)}
-          style={{ marginRight: "0.5rem", width: "100px" }}
-        />
-        <StyledSelect
-          placeholder="목록 수"
-          optionList={testList}
-          actions={(id: string) => console.log(id)}
-          style={{ width: "100px" }}
-        />
-      </div>
-    ),
-  },
-  {
-    title: "진열상태",
+    title: "공개여부",
     filterSource: (
       <Radio.Group name="radiogroup">
         <Radio name="select" value={1}>
           전체
         </Radio>
         <Radio name="select" value={2}>
-          진열
+          공개
         </Radio>
         <Radio name="select" value={3}>
-          미진열
+          비공개
         </Radio>
       </Radio.Group>
     ),
   },
   {
-    title: "자재명",
+    title: "검색",
     filterSource: (
       <StyledSelect
         placeholder="목록 수"
@@ -78,36 +53,18 @@ const categoryFilter = [
         actions={(id: string) => console.log(id)}
       />
     ),
+    style: { width: "100%" },
   },
   {
-    title: "자재업체",
+    title: "정렬",
     filterSource: (
       <StyledSelect
         placeholder="목록 수"
         optionList={testList}
         actions={(id: string) => console.log(id)}
+        style={{ width: "150px" }}
       />
     ),
-  },
-  {
-    title: "연동상태",
-    filterSource: (
-      <Radio.Group name="radiogroup">
-        <Radio name="select" value={1}>
-          전체
-        </Radio>
-        <Radio name="select" value={2}>
-          연동
-        </Radio>
-        <Radio name="select" value={3}>
-          미연동
-        </Radio>
-      </Radio.Group>
-    ),
-  },
-  {
-    title: "",
-    filterSource: null,
   },
   {
     title: "목록 수",
@@ -116,6 +73,7 @@ const categoryFilter = [
         placeholder="목록 수"
         optionList={testList}
         actions={(id: string) => console.log(id)}
+        style={{ width: "150px" }}
       />
     ),
   },
@@ -124,13 +82,11 @@ const categoryFilter = [
 const categoryData = [
   {
     index: 1,
-    num: 1,
-    ctg_name: "테스트",
-    use_num: 10,
-    showYn: true,
-    edit_1st: "",
-    edit_2nd: "",
-    sort_2nd: 10,
+    visible: true,
+    title: "배송 및 교환/반품 안내",
+    writer: "자재로",
+    created_at: "2024.03.11",
+    hits: 10,
   },
 ];
 
@@ -180,70 +136,35 @@ const Categort1st = () => {
   );
 };
 
-const GoodsList = () => {
+const NoticeList = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const goodsColumns = [
     {
-      title: "",
-      dataIndex: "index",
-      render: () => <Checkbox />,
-      isCheck: true,
-    },
-    {
-      title: "납품가",
-      dataIndex: "num",
-    },
-    {
       title: "번호",
-      dataIndex: "ctg_name",
+      dataIndex: "index",
     },
     {
-      title: "이미지",
-      dataIndex: "use_num",
+      title: "공개여부",
+      dataIndex: "visible",
+      render: (visible: string) => (visible ? "공개" : "미공개"),
     },
     {
-      title: "카테고리/자제명",
-      dataIndex: "showYn",
-      render: (showYn: boolean) =>
-        showYn ? (
-          <Tag color="success" text="공개" />
-        ) : (
-          <Tag color="error" text="비공개" />
-        ),
-      width: "30%",
+      title: "제목",
+      dataIndex: "title",
+      style: { width: "50%" },
     },
     {
-      title: "",
-      dataIndex: "edit_1st",
-      render: () => <Checkbox />,
-      isCheck: true,
+      title: "작성자",
+      dataIndex: "writer",
     },
     {
-      title: "진열",
-      dataIndex: "edit_2nd",
-      render: (showYn: boolean) =>
-        showYn ? (
-          <Tag color="success" text="진열" />
-        ) : (
-          <Tag color="error" text="미진열" />
-        ),
+      title: "작성일시",
+      dataIndex: "created_at",
     },
     {
-      title: "자재안내",
-      dataIndex: "sort_2nd",
-    },
-    {
-      title: "판매가",
-      dataIndex: "sort_2nd",
-    },
-    {
-      title: "판매업체",
-      dataIndex: "sort_2nd",
-    },
-    {
-      title: "등록수정",
-      dataIndex: "sort_2nd",
+      title: "조회수",
+      dataIndex: "hits",
     },
   ];
 
@@ -256,13 +177,13 @@ const GoodsList = () => {
             url: `/`,
           },
           {
-            name: "자재관리",
+            name: "게시판 관리",
             url: ``,
           },
-          { name: "카테고리 설정", url: "" },
+          { name: "공지사항", url: "" },
         ]}
       />
-      <Title title={"카테고리 설정"} />
+      <Title title={"공지사항"} />
       <Table.Filter
         columns={goodsColumns}
         content={categoryData}
@@ -280,4 +201,4 @@ const GoodsList = () => {
   );
 };
 
-export default GoodsList;
+export default NoticeList;

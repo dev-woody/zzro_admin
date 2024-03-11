@@ -69,23 +69,14 @@ interface pagenationProps {
   isFocus?: boolean;
 }
 
-const FilterBtn = styled.span`
-  margin-left: 0.25rem;
-  color: #666;
-  transition: 0s;
-
-  &:hover {
-    cursor: pointer;
-    color: ${(props) => props.theme.colors.primary};
-  }
-`;
-
 export const StyledTableBlock = styled.div`
-  width: 100%;
+  /* width: 100%; */
   /* border: 1px solid var(--cus-color-border); */
   box-sizing: border-box;
   //todo 좌우 스크롤이 꼭 필요한가?
-  overflow-x: scroll;
+  /* overflow-x: hidden; */
+  overflow-y: visible;
+  /* overflow-x: auto; */
 
   * {
     font-size: 0.75rem;
@@ -115,6 +106,9 @@ export const StyledTable = styled.table`
 
   td {
     border: 1px solid var(--cus-color-border);
+
+    /* line-height: 2; */
+    /* vertical-align: center; */
   }
 
   th,
@@ -123,10 +117,15 @@ export const StyledTable = styled.table`
     padding: 0.5rem 0.875rem;
     font-size: 0.875rem;
     box-sizing: border-box;
+    vertical-align: middle;
   }
 
   tbody tr:hover {
     background: var(--cus-color-fill-quaternary);
+  }
+
+  img {
+    height: 64px;
   }
 
   /* tr:first-child:hover {
@@ -327,6 +326,7 @@ const InternalTable = (props: TableProps) => {
               {columns?.map((list: any, index: number) => (
                 <th
                   key={index}
+                  style={{ ...list.style }}
                   // style={{ width: (1 / columns.length) * 100 + "%" }}
                 >
                   {list.isCheck ? (
@@ -394,7 +394,9 @@ const InternalTable = (props: TableProps) => {
                   {columns.map((list: any, index: number) => {
                     return list.render ? (
                       <td
-                        style={{ height: "46px", width: list.width }}
+                        style={{
+                          height: "46px",
+                        }}
                         key={index}
                       >
                         <div
@@ -402,6 +404,7 @@ const InternalTable = (props: TableProps) => {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
+                            fontSize: "inherit",
                           }}
                         >
                           {list.render(
@@ -419,7 +422,7 @@ const InternalTable = (props: TableProps) => {
               ))
             ) : (
               <tr>
-                <td colSpan={columns.length}>데이터가 없습니다.</td>
+                <td colSpan={columns.length}>데이터가 없습니다. </td>
               </tr>
             )}
           </tbody>

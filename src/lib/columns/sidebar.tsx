@@ -115,27 +115,23 @@ export const sidebarList: sideListType[] = [
   {
     icon: <FaTableList />,
     name: "게시판관리",
-    url: "/payment",
+    url: "/board",
     children: [
       {
         menuName: "자주묻는질문",
-        url: "/calculate",
-        disable: true,
+        url: "/Faq_list",
       },
       {
         menuName: "1:1문의",
-        url: "/sales",
-        disable: true,
+        url: "/inquiry_list",
       },
       {
         menuName: "공지사항",
-        url: "/sales",
-        disable: true,
+        url: "/notice_list",
       },
       {
         menuName: "NEWS",
-        url: "/sales",
-        disable: true,
+        url: "/news_list",
       },
     ],
   },
