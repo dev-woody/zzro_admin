@@ -1,10 +1,9 @@
 import { BaseBlock, BaseBlockFlex } from "lib/styles/baseblock";
 import { Button } from "lib/styles/button/buttonStyles";
 import { Description, DescriptionContent } from "lib/styles/descriptionStyles";
-import { StyledSelect } from "lib/styles/select/selectStyle";
+import { Select } from "lib/styles/select/selectStyle";
 import {
   StyledForm,
-  StyledInput,
   StyledSearchInput,
   PassShowBlock,
 } from "lib/styles/input/input";
@@ -23,15 +22,16 @@ import Calender from "./calender/calender";
 import Tabs from "./tabs/tabsStyle";
 import Radio from "./radio";
 import Checkbox from "./checkBox";
+import Input from "./input";
 
 export {
   Button,
   StyledForm,
-  StyledInput,
+  Input,
   StyledSearchInput,
   Description,
   DescriptionContent,
-  StyledSelect,
+  Select,
   Table,
   StyledToggle,
   BaseBlock,

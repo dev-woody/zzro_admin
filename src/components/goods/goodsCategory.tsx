@@ -6,7 +6,7 @@ import {
   Radio,
   Checkbox,
   StyledForm,
-  StyledInput,
+  Input,
   Table,
   Tag,
   Title,
@@ -63,7 +63,7 @@ const Categort1st = () => {
 
   return (
     <StyledForm>
-      <StyledInput
+      <Input
         placeholder="카테고리명"
         width="full"
         label="ctg_name"

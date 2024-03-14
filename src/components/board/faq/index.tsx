@@ -1,29 +1,7 @@
-import {
-  BaseBlock,
-  BreadCrumb,
-  Button,
-  Modal,
-  Radio,
-  Checkbox,
-  StyledForm,
-  StyledInput,
-  Table,
-  Tag,
-  Title,
-  StyledSelect,
-} from "lib/styles";
-import { useState } from "react";
+import { BaseBlock, BreadCrumb, Radio, Table, Title, Select } from "lib/styles";
 import styled from "styled-components";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { GetProp } from "types/globalTypes";
-import { CheckboxProps } from "lib/styles/checkBox";
-import { RadioChangeEvent } from "lib/styles/radio/interface";
 
-type CheckboxValueType = GetProp<typeof Checkbox.Group, "value">[number];
-
-const GoodsListBlock = styled(BaseBlock)``;
+const FaqListBlock = styled(BaseBlock)``;
 
 const testList = [{ name: "테스트", id: "test" }];
 
@@ -47,7 +25,7 @@ const categoryFilter = [
   {
     title: "검색",
     filterSource: (
-      <StyledSelect
+      <Select
         placeholder="목록 수"
         optionList={testList}
         actions={(id: string) => console.log(id)}
@@ -58,7 +36,7 @@ const categoryFilter = [
   {
     title: "정렬",
     filterSource: (
-      <StyledSelect
+      <Select
         placeholder="목록 수"
         optionList={testList}
         actions={(id: string) => console.log(id)}
@@ -69,7 +47,7 @@ const categoryFilter = [
   {
     title: "목록 수",
     filterSource: (
-      <StyledSelect
+      <Select
         placeholder="목록 수"
         optionList={testList}
         actions={(id: string) => console.log(id)}
@@ -89,55 +67,7 @@ const categoryData = [
   },
 ];
 
-const schema1st = yup.object({
-  ctg_name: yup.string().required("카테고리명을 입력해주세요."),
-  password: yup.string().required("비밀번호를 입력해주세요."),
-});
-
-const Categort1st = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { isSubmitting, errors },
-  } = useForm({
-    resolver: yupResolver(schema1st),
-    defaultValues: {
-      ctg_name: "",
-      password: "",
-    },
-  });
-
-  const [value, setValue] = useState(1);
-  const onChange = (e: RadioChangeEvent) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
-  };
-
-  return (
-    <StyledForm>
-      <StyledInput
-        placeholder="카테고리명"
-        width="full"
-        label="ctg_name"
-        register={register}
-        errors={errors}
-        status={errors.ctg_name}
-      />
-      <Radio.Group name="radiogroup">
-        <Radio name="select" value={1}>
-          선택
-        </Radio>
-        <Radio name="select" value={2}>
-          미선택
-        </Radio>
-      </Radio.Group>
-    </StyledForm>
-  );
-};
-
 const FaqList = () => {
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
-
   const goodsColumns = [
     {
       title: "번호",
@@ -168,7 +98,7 @@ const FaqList = () => {
   ];
 
   return (
-    <GoodsListBlock>
+    <FaqListBlock>
       <BreadCrumb
         indicator={[
           {
@@ -188,15 +118,7 @@ const FaqList = () => {
         content={categoryData}
         filter={categoryFilter}
       />
-      <Modal
-        title="제품분류"
-        msg={<Categort1st />}
-        // submitMsg="확인"
-        // cancelMsg="취소"
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-      />
-    </GoodsListBlock>
+    </FaqListBlock>
   );
 };
 

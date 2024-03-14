@@ -57,7 +57,7 @@ const MenuGroup = styled.ul<{ itemList: any }>`
 
   &.active {
     /* height: ${(props) => props.itemList}*46px; */
-    height: calc(${(props) => props.itemList} * 46px + 42px);
+    height: calc(${(props) => props.itemList} * 42px + 42px);
   }
 `;
 

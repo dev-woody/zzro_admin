@@ -1,27 +1,22 @@
 import {
   BaseBlock,
   BreadCrumb,
-  Button,
   Modal,
   Radio,
   Checkbox,
   StyledForm,
-  StyledInput,
+  Input,
   Table,
   Tag,
   Title,
-  StyledSelect,
+  Select,
 } from "lib/styles";
 import { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { GetProp } from "types/globalTypes";
-import { CheckboxProps } from "lib/styles/checkBox";
 import { RadioChangeEvent } from "lib/styles/radio/interface";
-
-type CheckboxValueType = GetProp<typeof Checkbox.Group, "value">[number];
 
 const GoodsListBlock = styled(BaseBlock)``;
 
@@ -32,19 +27,19 @@ const categoryFilter = [
     title: "카테고리",
     filterSource: (
       <div style={{ display: "flex" }}>
-        <StyledSelect
+        <Select
           placeholder="목록 수"
           optionList={testList}
           actions={(id: string) => console.log(id)}
           style={{ marginRight: "0.5rem", width: "100px" }}
         />
-        <StyledSelect
+        <Select
           placeholder="목록 수"
           optionList={testList}
           actions={(id: string) => console.log(id)}
           style={{ marginRight: "0.5rem", width: "100px" }}
         />
-        <StyledSelect
+        <Select
           placeholder="목록 수"
           optionList={testList}
           actions={(id: string) => console.log(id)}
@@ -72,7 +67,7 @@ const categoryFilter = [
   {
     title: "자재명",
     filterSource: (
-      <StyledSelect
+      <Select
         placeholder="목록 수"
         optionList={testList}
         actions={(id: string) => console.log(id)}
@@ -82,7 +77,7 @@ const categoryFilter = [
   {
     title: "자재업체",
     filterSource: (
-      <StyledSelect
+      <Select
         placeholder="목록 수"
         optionList={testList}
         actions={(id: string) => console.log(id)}
@@ -112,7 +107,7 @@ const categoryFilter = [
   {
     title: "목록 수",
     filterSource: (
-      <StyledSelect
+      <Select
         placeholder="목록 수"
         optionList={testList}
         actions={(id: string) => console.log(id)}
@@ -160,7 +155,7 @@ const Categort1st = () => {
 
   return (
     <StyledForm>
-      <StyledInput
+      <Input
         placeholder="카테고리명"
         width="full"
         label="ctg_name"

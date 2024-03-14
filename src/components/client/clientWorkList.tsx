@@ -2,8 +2,8 @@ import {
   BaseBlock,
   BreadCrumb,
   Button,
-  StyledInput,
-  StyledSelect,
+  Input,
+  Select,
   Table,
   Title,
 } from "lib/styles";
@@ -121,7 +121,7 @@ const filterSource = [
   {
     title: "시공업체명",
     filterSource: (
-      <StyledSelect
+      <Select
         placeholder="시공업체"
         optionList={localList}
         actions={(id: string) => console.log(id)}
@@ -191,7 +191,7 @@ const ClientWorkList = () => {
         // filterInput={"안녕"}
         pagenation
         // filterInput={
-        //   <StyledSelect
+        //   <Select
         //     placeholder="시공업체"
         //     optionList={localList}
         //     actions={(id: string) => console.log(id)}

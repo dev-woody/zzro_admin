@@ -98,17 +98,75 @@ export const sidebarList: sideListType[] = [
   {
     icon: <FaTruck />,
     name: "발주관리",
-    url: "/statistics",
+    url: "/order",
     children: [
       {
-        menuName: "매출분석",
-        url: "/sales",
-        disable: true,
+        menuName: "발주검수중",
+        url: "/ord_inspection",
       },
       {
-        menuName: "상품분석",
-        url: "/goods",
-        disable: true,
+        menuName: "발주수정",
+        url: "/ord_modify",
+      },
+      {
+        menuName: "결제대기",
+        url: "/before_payment",
+      },
+      {
+        menuName: "결제완료",
+        url: "/after_payment",
+      },
+      {
+        menuName: "배송대기",
+        url: "/before_shipping",
+      },
+      {
+        menuName: "배송진행",
+        url: "/ord_shipping",
+      },
+      {
+        menuName: "배송완료",
+        url: "/after_shipping",
+      },
+      {
+        menuName: "반품대기",
+        url: "/before_return",
+      },
+      {
+        menuName: "반품진행",
+        url: "/ord_return",
+      },
+      {
+        menuName: "반품완료",
+        url: "/after_return",
+      },
+      {
+        menuName: "환불대기",
+        url: "/before_refund",
+      },
+      {
+        menuName: "환불완료",
+        url: "/after_refund",
+      },
+      {
+        menuName: "주문취소",
+        url: "/ord_cancel",
+      },
+      {
+        menuName: "발주검수내역",
+        url: "/ord_inspection_list",
+      },
+      {
+        menuName: "발주내역",
+        url: "/ord_list",
+      },
+      {
+        menuName: "시공관리",
+        url: "/construction",
+      },
+      {
+        menuName: "AS요청",
+        url: "/construction_as",
       },
     ],
   },
@@ -138,37 +196,31 @@ export const sidebarList: sideListType[] = [
   {
     icon: <FaMobile />,
     name: "APP관리",
-    url: "/notice",
+    url: "/app",
     children: [
       {
         menuName: "배너관리",
-        url: "/announcement",
-        disable: true,
+        url: "/banner_list",
       },
       {
         menuName: "PUSH 알림설정",
-        url: "/faq",
-        disable: true,
+        url: "/push_send_cfg",
       },
       {
         menuName: "PUSH 알림내역",
-        url: "/faq",
-        disable: true,
+        url: "/push_send_list",
       },
       {
         menuName: "혜택 정보알림",
-        url: "/faq",
-        disable: true,
+        url: "/benefit_notification",
       },
       {
         menuName: "설치현황",
-        url: "/faq",
-        disable: true,
+        url: "/install_stat",
       },
       {
         menuName: "설치기기현황",
-        url: "/faq",
-        disable: true,
+        url: "/install_list",
       },
     ],
   },
@@ -180,22 +232,18 @@ export const sidebarList: sideListType[] = [
       {
         menuName: "일별매출현황",
         url: "/announcement",
-        disable: true,
       },
       {
         menuName: "월별매출현황",
         url: "/faq",
-        disable: true,
       },
       {
         menuName: "자재별매출현황",
         url: "/faq",
-        disable: true,
       },
       {
         menuName: "자재업체별매출현황",
         url: "/faq",
-        disable: true,
       },
     ],
   },

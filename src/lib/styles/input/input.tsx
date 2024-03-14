@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import styled, { css } from "styled-components";
 import { propsTypes } from "types/globalTypes";
 import { AlignBox, ErrorMsg } from "../globalStyles";
 import { ErrorMessage } from "@hookform/error-message";
+import { InputProps, InputRef } from "./interface";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 interface FormProps {
-  width?: string;
+  // width?: string;
   disable?: boolean;
   status?: any;
   type?: string;
@@ -42,13 +43,6 @@ const FormItem = styled.div<FormProps>`
   * {
     font-size: 0.875rem;
   }
-
-  ${(props) =>
-    props.width === "full" &&
-    css`
-      width: 100% !important;
-      min-height: : 300px;
-    `}
 
   ${(props) =>
     props.type === "textarea" &&
@@ -107,7 +101,7 @@ const BackIcon = styled.div`
   }
 `;
 
-const StyledInputBlock = styled.input`
+const InternalInputBlock = styled.input`
   flex-grow: 1;
   border: 0 !important;
   background-color: inherit;
@@ -191,19 +185,17 @@ export const PassShowBlock = ({
   );
 };
 
-export const StyledInput = (props: propsTypes) => {
+export const InternalInput = forwardRef<InputRef, InputProps>((props, ref) => {
   const [isCapslock, setIsCapslock] = useState<boolean>(false);
   const {
     startItem,
     endItem,
-    width,
     label,
-    register,
+    register = () => null,
     errors,
     status,
     disable,
     type,
-    align,
     ...rest
   } = props;
 
@@ -217,8 +209,8 @@ export const StyledInput = (props: propsTypes) => {
   };
 
   return (
-    <AlignBox align={align}>
-      <FormItem width={width} type={type} disable={disable} status={status}>
+    <AlignBox>
+      <FormItem type={type} disable={disable} status={status}>
         {startItem && <FrontIcon>{startItem}</FrontIcon>}
         {type === "textarea" ? (
           <StyledTextAreaBlock
@@ -226,16 +218,16 @@ export const StyledInput = (props: propsTypes) => {
             {...rest}
             autoComplete="off"
             {...register(label)}
-            onKeyPress={label === "password" ? passwordKeyPress : null}
+            // onKeyPress={label === "password" ? passwordKeyPress : null}
           />
         ) : (
-          <StyledInputBlock
+          <InternalInputBlock
             disabled={disable}
             {...rest}
             type={type}
             autoComplete="off"
             {...register(label)}
-            onKeyPress={label === "password" ? passwordKeyPress : null}
+            // onKeyPress={label === "password" ? passwordKeyPress : null}
           />
         )}
         {endItem && <BackIcon>{endItem}</BackIcon>}
@@ -250,15 +242,15 @@ export const StyledInput = (props: propsTypes) => {
       {errors && (
         <ErrorMessage
           errors={errors}
-          name={label}
+          name={typeof label === "string" ? label : ""}
           render={({ message }) => (
-            <ErrorMsg align={align}>{message ? message : "\u00A0"}</ErrorMsg>
+            <ErrorMsg>{message ? message : "\u00A0"}</ErrorMsg>
           )}
         />
       )}
     </AlignBox>
   );
-};
+});
 
 export const StyledSearchInput = (props: propsTypes) => {
   const {
@@ -283,16 +275,20 @@ export const StyledSearchInput = (props: propsTypes) => {
           width: "fit-content",
         }}
       >
-        <FormItem width={width} status={status}>
+        <FormItem status={status}>
           {register ? (
-            <StyledInputBlock
+            <InternalInputBlock
               disabled={disable}
               {...rest}
               autoComplete="off"
               {...register(label)}
             />
           ) : (
-            <StyledInputBlock disabled={disable} {...rest} autoComplete="off" />
+            <InternalInputBlock
+              disabled={disable}
+              {...rest}
+              autoComplete="off"
+            />
           )}
         </FormItem>
         <Label

@@ -126,7 +126,7 @@ const FormItem = styled.div<FormProps>`
   }
 `;
 
-const StyledInputBlock = styled.input`
+const InputBlock = styled.input`
   align-self: center;
   border: 0 !important;
   font-size: 0.75rem;
@@ -363,7 +363,7 @@ export const StyledUpload = (props: propsTypes) => {
                   }}
                 >
                   <FormItem fullWidth>
-                    <StyledInputBlock
+                    <InputBlock
                       disabled={disable}
                       {...rest}
                       value={isSrc[0].imageId}

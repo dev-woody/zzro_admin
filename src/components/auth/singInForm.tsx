@@ -1,12 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import {
-  Button,
-  StyledForm,
-  StyledInput,
-  PassShowBlock,
-  ErrorMsg,
-} from "lib/styles";
+import { Button, StyledForm, Input, PassShowBlock, ErrorMsg } from "lib/styles";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -76,7 +70,7 @@ function SignInForm({ signInResult, onSubmit }: any) {
           ZaZaero
         </Link>
         <StyledForm onSubmit={handleSubmit((data) => onSubmit(data))}>
-          <StyledInput
+          <Input
             placeholder="아이디"
             width="full"
             startItem={<BiUser />}
@@ -85,7 +79,7 @@ function SignInForm({ signInResult, onSubmit }: any) {
             errors={errors}
             status={errors.userId}
           />
-          <StyledInput
+          <Input
             placeholder="비밀번호"
             type={isPassShow ? "text" : "password"}
             width="full"

@@ -23,7 +23,7 @@ for (let i = 0; i < 60; i++) {
   }
 }
 
-type styledSelectTyps = {
+type SelectTyps = {
   isOpen?: boolean;
   status?: any;
   isheight?: any;
@@ -48,7 +48,7 @@ const SelectBlock = styled.div<formProps>`
     `}
 `;
 
-const SelectedBlock = styled.div<styledSelectTyps>`
+const SelectedBlock = styled.div<SelectTyps>`
   background-color: #fff;
   color: #737373;
   box-sizing: border-box;
@@ -66,14 +66,14 @@ const SelectedBlock = styled.div<styledSelectTyps>`
     cursor: pointer;
   }
 
-  ${(props: styledSelectTyps) =>
+  ${(props: SelectTyps) =>
     props.isOpen &&
     css`
       border: 1px solid #faad14;
       color: #d9d9d9;
     `}
 
-  ${(props: styledSelectTyps) =>
+  ${(props: SelectTyps) =>
     props.status &&
     css`
       border: 1px solid #ff4d4f !important;
@@ -95,7 +95,7 @@ const OptionTitle = styled.div`
   font-size: 0.875rem;
 `;
 
-const OptionMenuList = styled.div<styledSelectTyps>`
+const OptionMenuList = styled.div<SelectTyps>`
   position: absolute;
   top: 0.5rem;
   left: 0;
@@ -105,7 +105,7 @@ const OptionMenuList = styled.div<styledSelectTyps>`
   width: 200px;
   overflow: hidden;
 
-  ${(props: styledSelectTyps) =>
+  ${(props: SelectTyps) =>
     props.isOpen &&
     css`
       height: ${props.isheight};

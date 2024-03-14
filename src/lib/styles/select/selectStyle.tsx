@@ -7,7 +7,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { ErrorMessage } from "@hookform/error-message";
 import { priceToString } from "lib/function/changeInput";
 
-type styledSelectTyps = {
+type SelectTyps = {
   isOpen?: boolean;
   status?: any;
   fullWidth?: boolean;
@@ -33,6 +33,7 @@ const SelectBlock = styled.div<formProps>`
 
   & * {
     font-size: 0.875rem;
+    vertical-align: middle;
   }
 
   ${(props: formProps) =>
@@ -48,12 +49,13 @@ const SelectBlock = styled.div<formProps>`
     `}
 `;
 
-const SelectedBlock = styled.div<styledSelectTyps>`
+const SelectedBlock = styled.div<SelectTyps>`
   box-sizing: border-box;
   color: #737373;
   background-color: #fff;
   width: inherit;
   /* min-width: 100px; */
+  min-height: 30px;
   white-space: nowrap;
   border: 1px solid #d9d9d9;
   border-radius: 0.75rem;
@@ -69,14 +71,14 @@ const SelectedBlock = styled.div<styledSelectTyps>`
     cursor: pointer;
   }
 
-  ${(props: styledSelectTyps) =>
+  ${(props: SelectTyps) =>
     props.isOpen &&
     css`
       border: 1px solid ${(props) => props.theme.colors.primary};
       color: #d9d9d9;
     `}
 
-  ${(props: styledSelectTyps) =>
+  ${(props: SelectTyps) =>
     props.disable &&
     css`
       border: 1px solid #d9d9d9 !important;
@@ -89,7 +91,7 @@ const SelectedBlock = styled.div<styledSelectTyps>`
       }
     `}
 
-  ${(props: styledSelectTyps) =>
+  ${(props: SelectTyps) =>
     props.status &&
     css`
       border: 1px solid #ff4d4f !important;
@@ -110,7 +112,7 @@ const OptionTitle = styled.div`
   flex-grow: 1;
 `;
 
-const OptionMenuList = styled.div<styledSelectTyps>`
+const OptionMenuList = styled.div<SelectTyps>`
   position: absolute;
   top: 0.5rem;
   left: 0;
@@ -128,7 +130,7 @@ const OptionMenuList = styled.div<styledSelectTyps>`
   border-radius: 0.75rem;
   z-index: 100;
 
-  ${(props: styledSelectTyps) =>
+  ${(props: SelectTyps) =>
     props.isOpen &&
     css`
       height: fit-content;
@@ -136,7 +138,7 @@ const OptionMenuList = styled.div<styledSelectTyps>`
       /* border: 1px solid #d9d9d9; */
     `};
 
-  ${(props: styledSelectTyps) =>
+  ${(props: SelectTyps) =>
     props.fullWidth &&
     css`
       width: 100% !important;
@@ -189,7 +191,7 @@ const MultipleItem = styled.div`
   }
 `;
 
-export const StyledSelect = (props: propsTypes) => {
+export const Select = (props: propsTypes) => {
   const {
     placeholder,
     fullWidth,
@@ -300,7 +302,7 @@ export const StyledSelect = (props: propsTypes) => {
           disable={disable}
           onClick={disable ? undefined : () => setIsOpen(!isOpen)}
         >
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             {isMultiple.length > 0 ? (
               isMultiple.map((item) => {
                 return (

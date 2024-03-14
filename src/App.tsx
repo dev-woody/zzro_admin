@@ -14,6 +14,8 @@ import Client from "components/client";
 import Customer from "components/customer";
 import Goods from "components/goods";
 import Board from "components/board";
+import AppCfg from "components/app";
+import Order from "components/order";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -24,6 +26,8 @@ const App = () => {
         <Route path="/customer/*" element={<Customer />} />
         <Route path="/goods/*" element={<Goods />} />
         <Route path="/board/*" element={<Board />} />
+        <Route path="/app/*" element={<AppCfg />} />
+        <Route path="/order/*" element={<Order />} />
       </Route>,
       <Route path="signIn" element={<SignInForm />}></Route>,
     ])

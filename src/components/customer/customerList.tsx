@@ -2,7 +2,7 @@ import {
   BaseBlock,
   BreadCrumb,
   Button,
-  StyledSelect,
+  Select,
   Table,
   Tag,
   Title,
@@ -127,17 +127,17 @@ const CustomerList = () => {
         pagenation
         // filterInput={
         //   <>
-        //     <StyledSelect
+        //     <Select
         //       placeholder="지역별 조회"
         //       optionList={localList}
         //       actions={(id: string) => console.log(id)}
         //     />
-        //     <StyledSelect
+        //     <Select
         //       placeholder="승인상태"
         //       optionList={approveList}
         //       actions={(id: string) => console.log(id)}
         //     />
-        //     <StyledSelect
+        //     <Select
         //       placeholder="목록 수"
         //       optionList={pageNumList}
         //       actions={(id: string) => console.log(id)}

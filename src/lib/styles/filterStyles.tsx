@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "./button/buttonStyles";
-import { StyledInput } from "./input/input";
+import Input from "./input";
 import { useForm } from "react-hook-form";
 
 const StyledFilterBlock = styled.form`
@@ -22,11 +22,7 @@ const StyledFilter = ({ label, placeholder, action }: FilterProps) => {
   } = useForm();
   return (
     <StyledFilterBlock onSubmit={handleSubmit((data) => action({ data }))}>
-      <StyledInput
-        label={label}
-        placeholder={placeholder}
-        register={register}
-      />
+      <Input label={label} placeholder={placeholder} register={register} />
       <Button type="submit" status="primary" disabled={isSubmitting}>
         검색
       </Button>
