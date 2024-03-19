@@ -178,10 +178,10 @@ const OrdReturn = () => {
             name: "발주관리",
             url: ``,
           },
-          { name: "발주 검수중", url: "" },
+          { name: "반품 대기", url: "" },
         ]}
       />
-      <Title title={"발주 검수중"} />
+      <Title title={"반품 대기"} />
       <Table.Filter
         columns={goodsColumns}
         content={categoryData}

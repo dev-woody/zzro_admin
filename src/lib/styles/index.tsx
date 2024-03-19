@@ -1,6 +1,6 @@
 import { BaseBlock, BaseBlockFlex } from "lib/styles/baseblock";
 import { Button } from "lib/styles/button/buttonStyles";
-import { Description, DescriptionContent } from "lib/styles/descriptionStyles";
+import Description from "lib/styles/description/description";
 import { Select } from "lib/styles/select/selectStyle";
 import {
   StyledForm,
@@ -30,7 +30,6 @@ export {
   Input,
   StyledSearchInput,
   Description,
-  DescriptionContent,
   Select,
   Table,
   StyledToggle,

@@ -43,6 +43,7 @@ export const sidebarList: sideListType[] = [
       {
         menuName: "배송코드 관리",
         url: "/dcode",
+        disable: true,
       },
     ],
   },

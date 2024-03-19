@@ -1,10 +1,15 @@
 import styled, { css } from "styled-components";
 
-type descriptionProps = {
+export type DescriptionItem = {
+  label: string;
+  content: JSX.Element | string;
+};
+
+type DescriptionProps = {
   span?: string;
 };
 
-export const Description = styled.div`
+export const DescriptionBlock = styled.div`
   border: 0.5px solid rgba(0, 0, 0, 0.06);
   /* border-radius: 0.75rem; */
   width: 100%;
@@ -13,9 +18,9 @@ export const Description = styled.div`
   box-sizing: border-box;
 `;
 
-const DescriptionLabel = styled.div<descriptionProps>`
+const DescriptionLabel = styled.div<DescriptionProps>`
   display: flex;
-  width: 50%;
+  width: 100%;
   box-sizing: border-box;
   text-align: center;
 
@@ -46,7 +51,7 @@ const DescriptionLabel = styled.div<descriptionProps>`
     border-left: 1px solid rgba(0, 0, 0, 0.06);
   }
 
-  ${(props: descriptionProps) => {
+  ${(props: DescriptionProps) => {
     switch (props.span) {
       case "12":
         return css`
@@ -65,13 +70,13 @@ const DescriptionLabel = styled.div<descriptionProps>`
   }}
 `;
 
-export const DescriptionContent = ({
+const DescriptionContent = ({
   label,
   content,
   span,
 }: {
   label: string;
-  content: any;
+  content: JSX.Element | string;
   span?: string;
 }) => {
   return (
@@ -90,3 +95,15 @@ export const DescriptionContent = ({
     </DescriptionLabel>
   );
 };
+
+const Description = ({ data }: { data: DescriptionItem[] }) => {
+  return (
+    <DescriptionBlock>
+      {data.map((item: DescriptionItem) => (
+        <DescriptionContent label={item.label} content={item.content} />
+      ))}
+    </DescriptionBlock>
+  );
+};
+
+export default Description;
