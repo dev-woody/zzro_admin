@@ -16,6 +16,7 @@ import {
 } from "react-icons/fa";
 import Checkbox from "../checkBox/checkBox";
 import { UseFormRegister } from "react-hook-form";
+import { boolean } from "yup";
 
 export interface AbstractTableProps<T> {
   columns: any;
@@ -50,6 +51,7 @@ export interface TableProps<RecordType = any>
   pagenation?: boolean;
   pageCount?: number;
   doNoting?: boolean;
+  nonPadding?: boolean;
   // register?: UseFormRegister<{ [key: string]: string }>;
   // action;
   // align;
@@ -83,7 +85,7 @@ export const StyledTableBlock = styled.div`
   }
 `;
 
-export const StyledTable = styled.table`
+export const StyledTable = styled.table<{ nonPadding?: boolean }>`
   border-collapse: collapse;
   box-sizing: border-box;
   width: 100%;
@@ -95,6 +97,10 @@ export const StyledTable = styled.table`
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+
+  * {
+    font-size: 0.875rem;
+  }
 
   th {
     font-weight: bold;
@@ -115,7 +121,6 @@ export const StyledTable = styled.table`
   td {
     white-space: nowrap;
     padding: 0.5rem 0.875rem;
-    font-size: 0.875rem;
     box-sizing: border-box;
     vertical-align: middle;
   }
@@ -128,7 +133,13 @@ export const StyledTable = styled.table`
     height: 64px;
   }
 
-  /* tr:first-child:hover {
+  ${(props) =>
+    props.nonPadding &&
+    css`
+      td {
+        padding: 0;
+      }
+    `}/* tr:first-child:hover {
     background: none;
   } */
 
@@ -220,6 +231,7 @@ const InternalTable = (props: TableProps) => {
     pagenation,
     pageCount,
     doNoting,
+    nonPadding,
     // action,
     // filter,
   } = props;
@@ -320,7 +332,7 @@ const InternalTable = (props: TableProps) => {
   return (
     <>
       <StyledTableBlock>
-        <StyledTable>
+        <StyledTable nonPadding={nonPadding}>
           <thead>
             <tr>
               {columns?.map((list: any, index: number) => (
@@ -405,6 +417,7 @@ const InternalTable = (props: TableProps) => {
                             justifyContent: "center",
                             alignItems: "center",
                             fontSize: "inherit",
+                            height: "100%",
                           }}
                         >
                           {list.render(
