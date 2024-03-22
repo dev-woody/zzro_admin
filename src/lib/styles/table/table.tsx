@@ -90,6 +90,7 @@ export const StyledTable = styled.table<{ nonPadding?: boolean }>`
   box-sizing: border-box;
   width: 100%;
   text-align: center;
+  background-color: #fff;
   /* border: 1px solid var(--cus-color-border); */
 
   -ms-user-select: none;

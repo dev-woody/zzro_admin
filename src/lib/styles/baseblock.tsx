@@ -28,7 +28,10 @@ const Base = styled.div`
   /* flex-grow: 1; */
   box-shadow: 5px 5px 8px 5px #e1e1e1;
   width: 100%;
-
+  min-height: calc(100vh - 100px);
+  /* min-height: 250px; */
+  /* min-height: 100vh; */
+  /* height: auto !important; */
   /* & + & {
     margin-top: 1rem;
   } */

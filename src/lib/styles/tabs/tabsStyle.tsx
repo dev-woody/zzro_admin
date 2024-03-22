@@ -33,8 +33,10 @@ const TabTag = styled.li`
 `;
 
 const Tabs = ({ items }: { items: TabsProps[] }) => {
-  const [selectedTab, setSelectedTab] = useState<number>();
-  const [selectedChildren, setSelectedChildren] = useState<JSX.Element>();
+  const [selectedTab, setSelectedTab] = useState<number>(items[0].key);
+  const [selectedChildren, setSelectedChildren] = useState<JSX.Element>(
+    items[0].children
+  );
 
   const onSetSelectedTab = (item: TabsProps) => {
     setSelectedTab(item.key);

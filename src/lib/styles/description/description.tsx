@@ -10,7 +10,7 @@ type DescriptionProps = {
 };
 
 export const DescriptionBlock = styled.div`
-  border: 0.5px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--cus-color-border);
   /* border-radius: 0.75rem; */
   width: 100%;
   display: flex;
@@ -28,8 +28,8 @@ const DescriptionLabel = styled.div<DescriptionProps>`
     box-sizing: border-box;
     padding: 0.75rem 1rem;
     font-size: 0.875rem;
-    border-top: 0.5px solid rgba(0, 0, 0, 0.06);
-    border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+    border-top: 1px solid var(--cus-color-border);
+    /* border-bottom: 1px solid var(--cus-color-border); */
   }
 
   div.label {
@@ -48,7 +48,7 @@ const DescriptionLabel = styled.div<DescriptionProps>`
   }
 
   div.label + div.contants {
-    border-left: 1px solid rgba(0, 0, 0, 0.06);
+    border-left: 1px solid var(--cus-color-border);
   }
 
   ${(props: DescriptionProps) => {
@@ -59,7 +59,7 @@ const DescriptionLabel = styled.div<DescriptionProps>`
           border-left: 0 !important;
 
           &:nth-last-child(2) {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid var(--cus-color-border);
           }
         `;
       case "3":

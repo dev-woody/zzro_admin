@@ -18,14 +18,15 @@ const Content = styled.div`
 `;
 
 const Section = styled.div`
+  /* position: relative; */
   flex-grow: 1;
-  display: flex;
+  /* display: flex; */
   flex-wrap: wrap;
   flex-direction: column;
   width: calc(100% - 260px);
-  height: calc(100vh - 60px);
+  max-height: calc(100vh - 60px);
   box-sizing: border-box;
-  overflow-y: hidden;
+  overflow-x: hidden;
   overflow-y: scroll;
   padding: 20px;
 `;

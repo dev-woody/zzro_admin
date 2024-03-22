@@ -2,8 +2,8 @@ import {
   BaseBlock,
   BreadCrumb,
   Button,
+  Checkbox,
   Description,
-  Input,
   Table,
   Tabs,
   Title,
@@ -20,14 +20,17 @@ const SeparationBlock = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 1rem;
+  box-sizing: border-box;
+  /* height: 100%; */
 `;
 
 const SmallBaseBox = styled.div`
   //! 색상 바꿀것
-  /* border: 1px soild #dfdfdf; */
-  border: 1px soild red;
   box-sizing: border-box;
-  height: 100%;
+  border-radius: 1rem 1rem 0 0;
+  border: 1px solid #dfdfdf;
+  /* height: 100%; */
+  /* background-color: red; */
 `;
 
 const SmallTitle = styled.div`
@@ -38,10 +41,10 @@ const SmallTitle = styled.div`
   font-weight: bold;
   background-color: #dfdfdf;
   border-radius: 1rem 1rem 0 0;
-  height: 100%;
+  /* height: 100%; */
 
   & > div {
-    margin: 0.5rem;
+    margin: 1rem 1.25rem;
   }
 `;
 
@@ -173,6 +176,104 @@ const CalcTable = ({ sales_price }: { sales_price: number }) => {
   );
 };
 
+const CalcBox = styled(BaseBlock)`
+  /* margin: 1.25rem; */
+  display: flex;
+  box-sizing: border-box;
+  min-height: unset;
+  height: 120px;
+  margin-top: 1rem;
+  padding: 0;
+  /* width: calc(100% - 2.5rem); */
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      margin: 0.25rem 0;
+    }
+  }
+
+  & > div div:first-child {
+    font-size: 0.75rem;
+  }
+
+  & > div div:last-child {
+    font-weight: bold;
+  }
+
+  .operator {
+    font-size: 1.5rem !important;
+  }
+`;
+
+const SumPrice = () => {
+  return (
+    <CalcBox>
+      <div>
+        <div>판매가 합계</div>
+        <div>166000</div>
+      </div>
+      <div>
+        <div className="operator">+</div>
+      </div>
+      <div>
+        <div>요청옵션비 합계</div>
+        <div>0</div>
+      </div>
+      <div>
+        <div className="operator">+</div>
+      </div>
+      <div>
+        <div>배송비</div>
+        <div>0</div>
+      </div>
+      <div>
+        <div className="operator">=</div>
+      </div>
+      <div style={{ backgroundColor: "var(--cus-color-success-text)" }}>
+        <div>결제금액</div>
+        <div>166000</div>
+      </div>
+      <div>
+        <div className="operator">-</div>
+      </div>
+      <div style={{ backgroundColor: "var(--cus-color-primary-text)" }}>
+        <div>포인트사용금액</div>
+        <div>0</div>
+      </div>
+      <div>
+        <div className="operator">=</div>
+      </div>
+      <div style={{ backgroundColor: "var(--cus-cyan-6)" }}>
+        <div>최종결제금액</div>
+        <div>166000</div>
+      </div>
+      <div style={{ backgroundColor: "var(--cus-gold-5)" }}>
+        <div>공급가합계</div>
+        <div>판매업체 미지정</div>
+      </div>
+      <div style={{ backgroundColor: "var(--cus-color-error-text)" }}>
+        <div>마진합계</div>
+        <div>판매업체 미지정</div>
+      </div>
+    </CalcBox>
+  );
+};
+
 const OrdDetail = () => {
   const MaterialTab = () => {
     const materialColumn = [
@@ -283,6 +384,77 @@ const OrdDetail = () => {
       },
     ];
 
+    const vendorColumn = [
+      {
+        title: "판매업체",
+        dataIndex: "vendor_name",
+        render: (vendor_name: any) => (
+          <div>
+            <div>{vendor_name.com_name}</div>
+            <div>
+              {vendor_name.ceo_name}&nbsp;/&nbsp;{vendor_name.ceo_mobile}
+            </div>
+          </div>
+        ),
+      },
+      {
+        title: "판매연동",
+        dataIndex: "selling",
+      },
+      {
+        title: "요청",
+        dataIndex: "ord_register",
+        render: (ord_register: boolean) => {
+          return <Checkbox />;
+        },
+      },
+      {
+        title: "확인",
+        dataIndex: "provision_status",
+      },
+      {
+        title: "남품신청",
+        dataIndex: "deil_select",
+        render: (deil_select: number) => {
+          return <Checkbox />;
+        },
+      },
+      {
+        title: "공급가합계",
+        dataIndex: "total_price",
+      },
+      {
+        title: "요청옵션비 합계",
+        dataIndex: "option_price",
+      },
+      {
+        title: "배송비",
+        dataIndex: "shipping_fee",
+      },
+      {
+        title: "마진합계",
+        dataIndex: "sum_margin",
+      },
+    ];
+
+    const vendorContent = [
+      {
+        vendor_name: {
+          com_name: "(경기) 스타키움_자재",
+          ceo_name: "이정완",
+          ceo_mobile: "010-8808-9979",
+        },
+        selling: "2/2",
+        ord_register: true,
+        provision_status: "검수대기",
+        deil_select: false,
+        total_price: 166000,
+        option_price: 0,
+        shipping_fee: 0,
+        sum_margin: 0,
+      },
+    ];
+
     return (
       <div>
         <SeparationBlock>
@@ -316,14 +488,235 @@ const OrdDetail = () => {
           <SmallBaseBox style={{ width: "100%", marginLeft: "2rem" }}>
             <SmallTitle>
               <div>판매업체</div>
+              <div>
+                <Button>발주검수 요청</Button>
+              </div>
             </SmallTitle>
             <Table
-              columns={materialColumn}
-              content={MaterialContent}
+              columns={vendorColumn}
+              content={vendorContent}
               nonPadding={true}
             />
           </SmallBaseBox>
         </SeparationBlock>
+        {/* <SumPrice /> */}
+      </div>
+    );
+  };
+
+  const ConstructionTab = () => {
+    const materialColumn = [
+      {
+        title: "번호",
+        dataIndex: "num",
+      },
+      {
+        title: <FaImage />,
+        dataIndex: "thumbnail",
+      },
+      {
+        title: "카테고리/자재명/안내",
+        dataIndex: "title",
+        render: (title: any) => {
+          return (
+            <div
+              style={{
+                display: "flex",
+                height: "100%",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
+              }}
+            >
+              <div style={{ color: "var(--cus-color-text-tertiary)" }}>
+                {title.cate}
+              </div>
+              <div style={{ fontWeight: "bold" }}>{title.title}</div>
+              <div style={{ color: "var(--cus-color-success-text)" }}>
+                {title.dele}
+              </div>
+            </div>
+          );
+        },
+      },
+      {
+        title: "단위",
+        dataIndex: "unit",
+      },
+      {
+        title: "판매가/발주수량/판매금액",
+        dataIndex: "sales_price",
+        render: (sales_price: number) => {
+          return <CalcTable sales_price={sales_price} />;
+        },
+      },
+      {
+        title: "요청옵션/비용",
+        dataIndex: "option",
+        render: () => {
+          return (
+            <SmallTable>
+              <tr>
+                <td
+                  colSpan={2}
+                  style={{ backgroundColor: "#fff", padding: "0" }}
+                >
+                  <input
+                    style={{ height: "100%", width: "100%", border: "0" }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>+</td>
+                <td>0</td>
+              </tr>
+            </SmallTable>
+          );
+        },
+      },
+      {
+        title: "소계",
+        dataIndex: "sum_price",
+        render: (sum_price: number) => {
+          return (
+            <SmallTable>
+              <tr>
+                <td colSpan={2} style={{ backgroundColor: "#fff" }}></td>
+              </tr>
+              <tr>
+                <td>=</td>
+                <td>{sum_price}</td>
+              </tr>
+            </SmallTable>
+          );
+        },
+      },
+      {
+        title: "판매업체",
+        dataIndex: "vendor",
+      },
+    ];
+
+    const MaterialContent = [
+      {
+        num: 1,
+        thumbnail: "",
+        title: {
+          cate: "바닥공사 / 마루_이건 / 온돌마루",
+          title: "제나 내추럴_티크(1박스=48pcs=1평)_7.5T×75×900",
+          dele: "발주일로부터 2일 후 납품 (VAT 포함)",
+        },
+        unit: "박스",
+        sales_price: 93500,
+        option: "",
+        sum_price: 93500,
+        vendor: "1. ( 경기 ) 스타키움_자재",
+      },
+    ];
+
+    const vendorColumn = [
+      {
+        title: "판매업체",
+        dataIndex: "vendor_name",
+      },
+      {
+        title: "판매연동",
+        dataIndex: "thumbnail",
+      },
+      {
+        title: "요청",
+        dataIndex: "title",
+        render: (title: any) => {
+          return <Checkbox />;
+        },
+      },
+      {
+        title: "확인",
+        dataIndex: "unit",
+      },
+      {
+        title: "남품신청",
+        dataIndex: "sales_price",
+        render: (sales_price: number) => {
+          return <Checkbox />;
+        },
+      },
+      {
+        title: "공급가합계",
+        dataIndex: 166000,
+      },
+      {
+        title: "소계",
+        dataIndex: "sum_price",
+        render: (sum_price: number) => {
+          return (
+            <SmallTable>
+              <tr>
+                <td colSpan={2} style={{ backgroundColor: "#fff" }}></td>
+              </tr>
+              <tr>
+                <td>=</td>
+                <td>{sum_price}</td>
+              </tr>
+            </SmallTable>
+          );
+        },
+      },
+      {
+        title: "판매업체",
+        dataIndex: "vendor",
+      },
+    ];
+
+    return (
+      <div>
+        <div style={{ display: "flex" }}>
+          <SeparationBlock style={{ width: "30%" }}>
+            <SmallBaseBox>
+              <SmallTitle>
+                <div>시공요청 완료</div>
+              </SmallTitle>
+              <Description data={des_items} />
+            </SmallBaseBox>
+          </SeparationBlock>
+          <SeparationBlock
+            style={{ flexDirection: "column", marginLeft: "2rem" }}
+          >
+            <SmallBaseBox style={{ width: "100%" }}>
+              <SmallTitle>
+                <div>시공/양중 요청</div>
+              </SmallTitle>
+              <Table
+                columns={materialColumn}
+                content={MaterialContent}
+                nonPadding={true}
+              />
+            </SmallBaseBox>
+            <SmallBaseBox style={{ width: "100%", marginTop: "2rem" }}>
+              <SmallTitle>
+                <div>시공업자</div>
+                <div>
+                  <Button>시공요청</Button>
+                </div>
+              </SmallTitle>
+              <Table
+                columns={vendorColumn}
+                content={MaterialContent}
+                nonPadding={true}
+              />
+            </SmallBaseBox>
+            <SmallBaseBox style={{ width: "100%", marginTop: "2rem" }}>
+              <SmallTitle>
+                <div>요청중</div>
+              </SmallTitle>
+              <Table
+                columns={vendorColumn}
+                content={MaterialContent}
+                nonPadding={true}
+              />
+            </SmallBaseBox>
+          </SeparationBlock>
+        </div>
+        {/* <SumPrice /> */}
       </div>
     );
   };
@@ -337,29 +730,33 @@ const OrdDetail = () => {
     {
       key: 2,
       label: "시공목록",
-      children: <div>시공목록</div>,
+      children: <ConstructionTab />,
     },
   ];
+
   return (
-    <OrdDetailBlock>
-      <BreadCrumb
-        indicator={[
-          {
-            name: "홈",
-            url: `/`,
-          },
-          {
-            name: "발주관리",
-            url: ``,
-          },
-          { name: "발주 검수중", url: "" },
-        ]}
-      />
-      <Title title={"발주 상세"} />
-      <Table columns={detailStatus} content={content} />
-      <div style={{ marginBottom: "2rem" }}></div>
-      <Tabs items={tabItems} />
-    </OrdDetailBlock>
+    <>
+      <OrdDetailBlock>
+        <BreadCrumb
+          indicator={[
+            {
+              name: "홈",
+              url: `/`,
+            },
+            {
+              name: "발주관리",
+              url: ``,
+            },
+            { name: "발주 검수중", url: "" },
+          ]}
+        />
+        <Title title={"발주 상세"} />
+        <Table columns={detailStatus} content={content} />
+        <div style={{ marginBottom: "2rem" }}></div>
+        <Tabs items={tabItems} />
+      </OrdDetailBlock>
+      <SumPrice />
+    </>
   );
 };
 
