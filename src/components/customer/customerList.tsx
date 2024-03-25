@@ -1,21 +1,6 @@
-import {
-  BaseBlock,
-  BreadCrumb,
-  Button,
-  Select,
-  Table,
-  Tag,
-  Title,
-} from "lib/styles";
+import { BaseBlock, BreadCrumb, Button, Table, Tag, Title } from "lib/styles";
 import styled from "styled-components";
 import { FaPlus } from "react-icons/fa6";
-import { approveList, localList } from "lib/columns/list";
-
-const pageNumList = [
-  { name: "20명", id: "20명" },
-  { name: "50명", id: "50명" },
-  { name: "100명", id: "100명" },
-];
 
 const CustomerBlock = styled(BaseBlock)`
   width: 100%;

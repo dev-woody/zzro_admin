@@ -507,12 +507,19 @@ const OrdDetail = () => {
   const ConstructionTab = () => {
     const materialColumn = [
       {
+        title: <Checkbox />,
+        dataIndex: "title",
+        render: (title: any) => {
+          return <Checkbox />;
+        },
+      },
+      {
         title: "번호",
         dataIndex: "num",
       },
       {
-        title: <FaImage />,
-        dataIndex: "thumbnail",
+        title: "공정",
+        dataIndex: "process",
       },
       {
         title: "카테고리/자재명/안내",
@@ -539,131 +546,109 @@ const OrdDetail = () => {
         },
       },
       {
-        title: "단위",
-        dataIndex: "unit",
+        title: "시공일자",
+        dataIndex: "deadline",
       },
       {
-        title: "판매가/발주수량/판매금액",
-        dataIndex: "sales_price",
-        render: (sales_price: number) => {
-          return <CalcTable sales_price={sales_price} />;
-        },
+        title: "현장 관리자",
+        dataIndex: "field_man",
       },
       {
-        title: "요청옵션/비용",
-        dataIndex: "option",
-        render: () => {
-          return (
-            <SmallTable>
-              <tr>
-                <td
-                  colSpan={2}
-                  style={{ backgroundColor: "#fff", padding: "0" }}
-                >
-                  <input
-                    style={{ height: "100%", width: "100%", border: "0" }}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>+</td>
-                <td>0</td>
-              </tr>
-            </SmallTable>
-          );
-        },
+        title: "현장 주소",
+        dataIndex: "field_addr",
       },
       {
-        title: "소계",
-        dataIndex: "sum_price",
-        render: (sum_price: number) => {
-          return (
-            <SmallTable>
-              <tr>
-                <td colSpan={2} style={{ backgroundColor: "#fff" }}></td>
-              </tr>
-              <tr>
-                <td>=</td>
-                <td>{sum_price}</td>
-              </tr>
-            </SmallTable>
-          );
-        },
-      },
-      {
-        title: "판매업체",
-        dataIndex: "vendor",
+        title: "현장 정보",
+        dataIndex: "field_info",
       },
     ];
 
     const MaterialContent = [
       {
         num: 1,
-        thumbnail: "",
+        process: "바닥공사",
         title: {
           cate: "바닥공사 / 마루_이건 / 온돌마루",
           title: "제나 내추럴_티크(1박스=48pcs=1평)_7.5T×75×900",
           dele: "발주일로부터 2일 후 납품 (VAT 포함)",
         },
-        unit: "박스",
-        sales_price: 93500,
-        option: "",
-        sum_price: 93500,
-        vendor: "1. ( 경기 ) 스타키움_자재",
+        deadline: "2024-04-01",
+        field_man: "관리자 010-1234-5678",
+        field_addr: "경기도 성남시 분당대로",
+        field_info: "12평",
       },
     ];
 
     const vendorColumn = [
       {
-        title: "판매업체",
-        dataIndex: "vendor_name",
-      },
-      {
-        title: "판매연동",
-        dataIndex: "thumbnail",
-      },
-      {
-        title: "요청",
-        dataIndex: "title",
-        render: (title: any) => {
-          return <Checkbox />;
-        },
-      },
-      {
-        title: "확인",
-        dataIndex: "unit",
-      },
-      {
-        title: "남품신청",
+        title: "납품신청",
         dataIndex: "sales_price",
         render: (sales_price: number) => {
           return <Checkbox />;
         },
       },
       {
-        title: "공급가합계",
-        dataIndex: 166000,
+        title: "번호",
+        dataIndex: "num",
       },
       {
-        title: "소계",
-        dataIndex: "sum_price",
-        render: (sum_price: number) => {
+        title: "시공업체명",
+        dataIndex: "vendor_name",
+      },
+      {
+        title: "시공업체 연락처",
+        dataIndex: "vendor_mobile",
+      },
+    ];
+
+    const requestColumn = [
+      {
+        title: "번호",
+        dataIndex: "num",
+      },
+      {
+        title: "공정",
+        dataIndex: "processe",
+      },
+      {
+        title: "카테고리/자재명/안내",
+        dataIndex: "title",
+        render: (title: any) => {
           return (
-            <SmallTable>
-              <tr>
-                <td colSpan={2} style={{ backgroundColor: "#fff" }}></td>
-              </tr>
-              <tr>
-                <td>=</td>
-                <td>{sum_price}</td>
-              </tr>
-            </SmallTable>
+            <div
+              style={{
+                display: "flex",
+                height: "100%",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
+              }}
+            >
+              <div style={{ color: "var(--cus-color-text-tertiary)" }}>
+                {title.cate}
+              </div>
+              <div style={{ fontWeight: "bold" }}>{title.title}</div>
+              <div style={{ color: "var(--cus-color-success-text)" }}>
+                {title.dele}
+              </div>
+            </div>
           );
         },
       },
       {
-        title: "판매업체",
-        dataIndex: "vendor",
+        title: "시공업체",
+        dataIndex: "vendor_name",
+      },
+      {
+        title: "확인",
+        dataIndex: "unit",
+      },
+      {
+        title: "요청일시",
+        dataIndex: "created_at",
+      },
+      {
+        title: "공정",
+        dataIndex: "processe",
       },
     ];
 
@@ -709,7 +694,7 @@ const OrdDetail = () => {
                 <div>요청중</div>
               </SmallTitle>
               <Table
-                columns={vendorColumn}
+                columns={requestColumn}
                 content={MaterialContent}
                 nonPadding={true}
               />

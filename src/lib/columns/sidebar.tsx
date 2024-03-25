@@ -109,6 +109,11 @@ export const sidebarList: sideListType[] = [
         menuName: "발주수정",
         url: "/ord_modify",
       },
+      // {
+      //   menuName: "",
+      //   url: "/",
+      //   disable: true,
+      // },
       {
         menuName: "결제대기",
         url: "/before_payment",
