@@ -11,7 +11,7 @@ import {
 import styled from "styled-components";
 import { FaPlus } from "react-icons/fa";
 
-const BeReturnBlock = styled(BaseBlock)``;
+const OrdInspListBlock = styled(BaseBlock)``;
 
 const testList = [{ name: "테스트", id: "test" }];
 
@@ -83,17 +83,17 @@ const categoryData = [
     cancel_status: "전체취소",
     cancel_at: "2023-12-07 11:06",
     cancel_sum: "1,125,000",
-    refund_diff: "",
-    refund_price: "1,125,000",
-    cash_refund: "",
-    point_refund: "",
+    ordInspList_diff: "",
+    ordInspList_price: "1,125,000",
+    cash_ordInspList: "",
+    point_ordInspList: "",
     return_status: "반품대기",
-    refund_status: "환불대기",
-    refund_date: "",
+    ordInspList_status: "환불대기",
+    ordInspList_date: "",
   },
 ];
 
-const BeReturn = () => {
+const OrdInspList = () => {
   const goodsColumns = [
     {
       title: "번호",
@@ -138,19 +138,19 @@ const BeReturn = () => {
     },
     {
       title: "환불차감",
-      dataIndex: "refund_diff",
+      dataIndex: "ordInspList_diff",
     },
     {
       title: "확정환불금액",
-      dataIndex: "refund_price",
+      dataIndex: "ordInspList_price",
     },
     {
       title: "현금환불",
-      dataIndex: "cash_refund",
+      dataIndex: "cash_ordInspList",
     },
     {
       title: "포인트환불",
-      dataIndex: "point_refund",
+      dataIndex: "point_ordInspList",
     },
     {
       title: "반품상태",
@@ -158,16 +158,16 @@ const BeReturn = () => {
     },
     {
       title: "환불상태",
-      dataIndex: "refund_status",
+      dataIndex: "ordInspList_status",
     },
     {
       title: "환불일시",
-      dataIndex: "refund_date",
+      dataIndex: "ordInspList_date",
     },
   ];
 
   return (
-    <BeReturnBlock>
+    <OrdInspListBlock>
       <BreadCrumb
         indicator={[
           {
@@ -178,17 +178,17 @@ const BeReturn = () => {
             name: "발주관리",
             url: ``,
           },
-          { name: "반품대기", url: "" },
+          { name: "발주검수내역", url: "" },
         ]}
       />
-      <Title title={"반품대기"} />
+      <Title title={"발주검수내역"} />
       <Table.Filter
         columns={goodsColumns}
         content={categoryData}
         filter={categoryFilter}
       />
-    </BeReturnBlock>
+    </OrdInspListBlock>
   );
 };
 
-export default BeReturn;
+export default OrdInspList;

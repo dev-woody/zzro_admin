@@ -113,7 +113,6 @@ export const StyledTable = styled.table<{ nonPadding?: boolean }>`
 
   td {
     border: 1px solid var(--cus-color-border);
-
     /* line-height: 2; */
     /* vertical-align: center; */
   }
@@ -124,6 +123,12 @@ export const StyledTable = styled.table<{ nonPadding?: boolean }>`
     padding: 0.5rem 0.875rem;
     box-sizing: border-box;
     vertical-align: middle;
+  }
+
+  td {
+    div {
+      margin: 0 auto;
+    }
   }
 
   tbody tr:hover {
@@ -138,7 +143,7 @@ export const StyledTable = styled.table<{ nonPadding?: boolean }>`
     props.nonPadding &&
     css`
       td {
-        padding: 0;
+        /* padding: 0; */
       }
     `}/* tr:first-child:hover {
     background: none;

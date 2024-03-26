@@ -79,6 +79,7 @@ const Categort1st = () => {
           미선택
         </Radio>
       </Radio.Group>
+      엔터를 누르세요
     </StyledForm>
   );
 };
@@ -162,8 +163,8 @@ const GoodsCategory = () => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />
-      <Checkbox>내용</Checkbox>
-      <Checkbox.Group options={options} />
+      {/* <Checkbox>내용</Checkbox>
+      <Checkbox.Group options={options} /> */}
     </GoodsCategoryBlock>
   );
 };

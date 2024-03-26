@@ -2,7 +2,6 @@ import React from "react";
 import Table, { TableProps } from "./table";
 import styled from "styled-components";
 import { StyledTableBlock, StyledTable } from "./table";
-import { CSS } from "styled-components/dist/types";
 
 export interface FilterProps extends TableProps {
   filter: { title: string; filterSource: JSX.Element | null; style?: object }[];
@@ -33,8 +32,10 @@ const FilterOptionBlock = styled(StyledTable)`
   /* flex-wrap: wrap; */
   margin-bottom: 1rem;
   /* overflow-x: hidden !important; */
-  width: 100%;
-
+  /* width: 100%; */
+  td div {
+    margin: 0;
+  }
   .width100 {
     width: 100%;
   }

@@ -534,11 +534,23 @@ const OrdDetail = () => {
                 justifyContent: "space-evenly",
               }}
             >
-              <div style={{ color: "var(--cus-color-text-tertiary)" }}>
+              <div
+                style={{
+                  margin: "0.25rem",
+                  color: "var(--cus-color-text-tertiary)",
+                }}
+              >
                 {title.cate}
               </div>
-              <div style={{ fontWeight: "bold" }}>{title.title}</div>
-              <div style={{ color: "var(--cus-color-success-text)" }}>
+              <div style={{ margin: "0.25rem", fontWeight: "bold" }}>
+                {title.title}
+              </div>
+              <div
+                style={{
+                  margin: "0.25rem",
+                  color: "var(--cus-color-success-text)",
+                }}
+              >
                 {title.dele}
               </div>
             </div>
@@ -581,7 +593,7 @@ const OrdDetail = () => {
 
     const vendorColumn = [
       {
-        title: "납품신청",
+        title: "시공신청",
         dataIndex: "sales_price",
         render: (sales_price: number) => {
           return <Checkbox />;
@@ -623,11 +635,23 @@ const OrdDetail = () => {
                 justifyContent: "space-evenly",
               }}
             >
-              <div style={{ color: "var(--cus-color-text-tertiary)" }}>
+              <div
+                style={{
+                  margin: "0.25rem",
+                  color: "var(--cus-color-text-tertiary)",
+                }}
+              >
                 {title.cate}
               </div>
-              <div style={{ fontWeight: "bold" }}>{title.title}</div>
-              <div style={{ color: "var(--cus-color-success-text)" }}>
+              <div style={{ margin: "0.25rem", fontWeight: "bold" }}>
+                {title.title}
+              </div>
+              <div
+                style={{
+                  margin: "0.25rem",
+                  color: "var(--cus-color-success-text)",
+                }}
+              >
                 {title.dele}
               </div>
             </div>
@@ -643,11 +667,11 @@ const OrdDetail = () => {
         dataIndex: "unit",
       },
       {
-        title: "요청일시",
+        title: "시공업체 연락처",
         dataIndex: "created_at",
       },
       {
-        title: "공정",
+        title: "시공일자",
         dataIndex: "processe",
       },
     ];

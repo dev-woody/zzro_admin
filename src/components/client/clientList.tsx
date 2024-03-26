@@ -10,6 +10,7 @@ import {
 import styled from "styled-components";
 import { FaPlus } from "react-icons/fa6";
 import { approveList, localList } from "lib/columns/list";
+import { Link } from "react-router-dom";
 
 const pageNumList = [
   { name: "20명", id: "20명" },
@@ -161,10 +162,12 @@ const ClientList = () => {
       <Title
         title={"시공업체현황"}
         extra={
-          <Button status="primary">
-            <FaPlus />
-            &nbsp;시공업체 등록
-          </Button>
+          <Link to={"register"}>
+            <Button status="primary">
+              <FaPlus />
+              &nbsp;시공업체 등록
+            </Button>
+          </Link>
         }
       />
       <Table.Filter

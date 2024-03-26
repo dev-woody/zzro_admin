@@ -11,7 +11,7 @@ import {
 import styled from "styled-components";
 import { FaPlus } from "react-icons/fa";
 
-const BeReturnBlock = styled(BaseBlock)``;
+const OrdReturnBlock = styled(BaseBlock)``;
 
 const testList = [{ name: "테스트", id: "test" }];
 
@@ -93,7 +93,7 @@ const categoryData = [
   },
 ];
 
-const BeReturn = () => {
+const OrdReturn = () => {
   const goodsColumns = [
     {
       title: "번호",
@@ -167,7 +167,7 @@ const BeReturn = () => {
   ];
 
   return (
-    <BeReturnBlock>
+    <OrdReturnBlock>
       <BreadCrumb
         indicator={[
           {
@@ -178,17 +178,17 @@ const BeReturn = () => {
             name: "발주관리",
             url: ``,
           },
-          { name: "반품대기", url: "" },
+          { name: "반품진행", url: "" },
         ]}
       />
-      <Title title={"반품대기"} />
+      <Title title={"반품진행"} />
       <Table.Filter
         columns={goodsColumns}
         content={categoryData}
         filter={categoryFilter}
       />
-    </BeReturnBlock>
+    </OrdReturnBlock>
   );
 };
 
-export default BeReturn;
+export default OrdReturn;

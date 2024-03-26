@@ -34,7 +34,7 @@ const DescriptionLabel = styled.div<DescriptionProps>`
 
   div.label {
     background-color: #fafafa;
-    width: 200px;
+    min-width: 120px;
     display: flex;
     justify-content: center;
   }

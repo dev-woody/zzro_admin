@@ -11,7 +11,7 @@ import {
 import styled from "styled-components";
 import { FaPlus } from "react-icons/fa";
 
-const BeReturnBlock = styled(BaseBlock)``;
+const BeRefundBlock = styled(BaseBlock)``;
 
 const testList = [{ name: "테스트", id: "test" }];
 
@@ -83,17 +83,17 @@ const categoryData = [
     cancel_status: "전체취소",
     cancel_at: "2023-12-07 11:06",
     cancel_sum: "1,125,000",
-    refund_diff: "",
-    refund_price: "1,125,000",
-    cash_refund: "",
-    point_refund: "",
+    berefund_diff: "",
+    berefund_price: "1,125,000",
+    cash_berefund: "",
+    point_berefund: "",
     return_status: "반품대기",
-    refund_status: "환불대기",
-    refund_date: "",
+    berefund_status: "환불대기",
+    berefund_date: "",
   },
 ];
 
-const BeReturn = () => {
+const BeRefund = () => {
   const goodsColumns = [
     {
       title: "번호",
@@ -138,19 +138,19 @@ const BeReturn = () => {
     },
     {
       title: "환불차감",
-      dataIndex: "refund_diff",
+      dataIndex: "berefund_diff",
     },
     {
       title: "확정환불금액",
-      dataIndex: "refund_price",
+      dataIndex: "berefund_price",
     },
     {
       title: "현금환불",
-      dataIndex: "cash_refund",
+      dataIndex: "cash_berefund",
     },
     {
       title: "포인트환불",
-      dataIndex: "point_refund",
+      dataIndex: "point_berefund",
     },
     {
       title: "반품상태",
@@ -158,16 +158,16 @@ const BeReturn = () => {
     },
     {
       title: "환불상태",
-      dataIndex: "refund_status",
+      dataIndex: "berefund_status",
     },
     {
       title: "환불일시",
-      dataIndex: "refund_date",
+      dataIndex: "berefund_date",
     },
   ];
 
   return (
-    <BeReturnBlock>
+    <BeRefundBlock>
       <BreadCrumb
         indicator={[
           {
@@ -178,17 +178,17 @@ const BeReturn = () => {
             name: "발주관리",
             url: ``,
           },
-          { name: "반품대기", url: "" },
+          { name: "환불대기", url: "" },
         ]}
       />
-      <Title title={"반품대기"} />
+      <Title title={"환불대기"} />
       <Table.Filter
         columns={goodsColumns}
         content={categoryData}
         filter={categoryFilter}
       />
-    </BeReturnBlock>
+    </BeRefundBlock>
   );
 };
 
-export default BeReturn;
+export default BeRefund;

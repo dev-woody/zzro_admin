@@ -41,6 +41,7 @@ const CustomBaseBlock = styled(BaseBlock)`
   flex-grow: 1;
   margin: 0 0.5rem;
   margin-bottom: 1rem;
+  min-height: 0;
 `;
 
 const ChartBox = styled.div`
@@ -297,9 +298,7 @@ const Dashboard = () => {
         </FlexBox>
         <FlexBox>
           <CustomBaseBlock>
-            <div style={{ height: "100%" }}>
-              <Line options={options} data={data} />
-            </div>
+            <Line options={options} data={data} />
           </CustomBaseBlock>
         </FlexBox>
       </ChartBox>
