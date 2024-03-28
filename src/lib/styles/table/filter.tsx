@@ -12,9 +12,9 @@ const FilterBlock = styled.div`
   flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap; */
-  width: 100% !important;
+  /* width: 100% !important; */
   /* position: relative; */
-  /* overflow-x: scroll; */
+  overflow-x: scroll;
 
   //! 셀렉트 박스 수정
 `;

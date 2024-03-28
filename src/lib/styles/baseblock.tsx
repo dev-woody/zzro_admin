@@ -19,6 +19,7 @@ export const BaseBlockFlex = styled.div`
 `;
 
 const Base = styled.div`
+  z-index: 100;
   margin: 0;
   background: #fff;
   padding: 1.5rem;
@@ -26,6 +27,7 @@ const Base = styled.div`
   border-radius: 0.75rem;
   text-align: left;
   /* flex-grow: 1; */
+  overflow-x: hidden;
   box-shadow: 5px 5px 8px 5px #e1e1e1;
   width: 100%;
   min-height: calc(100vh - 100px);

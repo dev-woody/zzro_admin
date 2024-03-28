@@ -1,19 +1,11 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { propsTypes } from "types/globalTypes";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { AlignBox } from "../globalStyles";
 
 import { type TableProps as RcTableProps } from "rc-table";
 
-import { StyledSearchInput } from "../input/input";
-import {
-  FaAngleDoubleLeft,
-  FaAngleDoubleRight,
-  FaRegCaretSquareDown,
-  FaRegCaretSquareUp,
-} from "react-icons/fa";
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import Checkbox from "../checkBox/checkBox";
 import { UseFormRegister } from "react-hook-form";
 import { boolean } from "yup";
@@ -72,13 +64,14 @@ interface pagenationProps {
 }
 
 export const StyledTableBlock = styled.div`
-  /* width: 100%; */
+  width: 100%;
   /* border: 1px solid var(--cus-color-border); */
   box-sizing: border-box;
   //todo 좌우 스크롤이 꼭 필요한가?
   /* overflow-x: hidden; */
-  overflow-y: visible;
+  /* overflow-y: visible; */
   /* overflow-x: auto; */
+  overflow-x: scroll;
 
   * {
     font-size: 0.75rem;
