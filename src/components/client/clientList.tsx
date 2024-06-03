@@ -2,6 +2,7 @@ import {
   BaseBlock,
   BreadCrumb,
   Button,
+  Input,
   Select,
   Table,
   Tag,
@@ -56,6 +57,13 @@ const filterItem = [
     ),
   },
   {
+    title: "검색",
+    filterSource: <Input placeholder="업체명" />,
+    style: {
+      width: "100%",
+    },
+  },
+  {
     title: "목록 수",
     filterSource: (
       <Select
@@ -64,10 +72,6 @@ const filterItem = [
         actions={(id: string) => console.log(id)}
       />
     ),
-  },
-  {
-    title: "",
-    filterSource: null,
   },
 ];
 

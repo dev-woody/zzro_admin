@@ -67,6 +67,21 @@ export const Button = styled.button<styledProps>`
     `}
 
     ${(props: styledProps) =>
+    props.status === "error" &&
+    css`
+      border: 1px solid var(--cus-color-error-border);
+      background-color: var(--cus-color-error-bg);
+      color: var(--cus-color-error);
+      font-weight: 600;
+
+      &:hover {
+        border: 1px solid var(--cus-color-error-border-hover) !important;
+        background-color: var(--cus-color-error-hover);
+        color: var(--cus-color-error-text-hover);
+      }
+    `}
+
+    ${(props: styledProps) =>
     props.withInput &&
     css`
       width: 200px;
